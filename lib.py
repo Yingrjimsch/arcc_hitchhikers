@@ -42,9 +42,9 @@ def rotate_back(matrix, move):
 
 """prüfen dass nachbaren ähnliche farbe haben"""
 
-"""prüfen ob array dimensionen gleich sind"""
+"""prüfen ob array dimensionen gleich sind  (vonwareb)"""
 
-"""prüfen ob farb summe gleich bleibt"""
+"""prüfen ob farb summe gleich bleibt (vonwareb)"""
 
 """pixel verschieben"""
 
