@@ -33,3 +33,37 @@ def rotate_back(matrix, move):
         return rotate_clockwise(matrix)
     else:
         print('This is not possible')        
+
+"""Funktion extrahiert alle gleichen Farben, returnt matrizen pro farbe"""
+
+"""nachbaren erkennen (zurückgeben) pro pixel"""
+
+"""prüfen dass nachbaren ähnliche farbe haben"""
+
+"""prüfen ob array dimensionen gleich sind"""
+
+"""prüfen ob farb summe gleich bleibt"""
+
+"""pixel verschieben"""
+
+"""gruppe(objekt) verschieben"""
+
+"""muster erkennen (wiederholung von farben)"""
+
+"""objekt skalieren"""
+
+"""objekt erkennen (default objekte angeben wie quadrat, rechteck, kreuz)"""
+
+
+"""objekt duplizieren"""
+
+"""wandinteraktion erkennen"""
+
+"""pixel farbe ändern"""
+
+
+"""objekt farbe ändern"""
+
+"""racetrack connect shortest path (42oli)"""
+
+
