@@ -33,6 +33,8 @@ def rotate_back(matrix, move):
         return rotate_clockwise(matrix)
     else:
         print('This is not possible')        
+        
+"""!!!!!!!!Wrapper für matrizen!!!!!!!!"""
 
 """Funktion extrahiert alle gleichen Farben, returnt matrizen pro farbe"""
 
