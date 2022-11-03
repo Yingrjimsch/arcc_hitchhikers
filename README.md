@@ -23,4 +23,4 @@ All Datapoints outside of our matrix should have the same value **10**
 
 
 ### Moonshots
-* Wrap all matricies of the dimension n*m with a matrix of the dimension n+2*m+2 where the "border" contains a boundary value
+* Wrap all matricies of the dimension n*m with a matrix of the dimension n+2 x m+2 where the "border" contains a boundary value
