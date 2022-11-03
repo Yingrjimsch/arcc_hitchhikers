@@ -32,13 +32,16 @@ def rotate_back(matrix, move):
     elif move == 3:
         return rotate_clockwise(matrix)
     else:
-        print('This is not possible')        
+        print('This is not possible')
         
 """!!!!!!!!Wrapper für matrizen!!!!!!!!"""
 
+
 """Funktion extrahiert alle gleichen Farben, returnt matrizen pro farbe"""
 
-"""nachbaren erkennen (zurückgeben) pro pixel"""
+"""Rand Hinzufügen (nxm => n+2xm+2) (kochma2)"""
+
+"""nachbaren erkennen (zurückgeben) pro pixel (kochma2)"""
 
 """prüfen dass nachbaren ähnliche farbe haben"""
 
