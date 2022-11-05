@@ -42,6 +42,12 @@ def rotate_back(matrix, move):
 """Rand Hinzufügen (nxm => n+2xm+2) (kochma2)"""
 
 """nachbaren erkennen (zurückgeben) pro pixel (kochma2)"""
+def get_pixel_neighbours(matrix, pixel):
+    neighbours = np.zeros((3,3))
+    for i in range(3):
+        for j in range(3):
+            neighbours[i, j] = matrix[pixel[0]-1+i, pixel[1]-1+j]
+    return neighbours
 
 """prüfen dass nachbaren ähnliche farbe haben"""
 
