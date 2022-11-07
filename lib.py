@@ -33,13 +33,13 @@ def rotate_back(matrix, move):
         return rotate_clockwise(matrix)
     else:
         print('This is not possible')
-        
-"""!!!!!!!!Wrapper für matrizen!!!!!!!!"""
 
 
 """Funktion extrahiert alle gleichen Farben, returnt matrizen pro farbe"""
 
 """Rand Hinzufügen (nxm => n+2xm+2) (kochma2)"""
+def add_border(matrix):
+    return np.pad(matrix, 1, mode='constant', constant_values=10)
 
 """nachbaren erkennen (zurückgeben) pro pixel (kochma2)"""
 def get_pixel_neighbours(matrix, pixel):
