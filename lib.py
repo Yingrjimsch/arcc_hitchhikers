@@ -47,6 +47,18 @@ def add_border(matrix):
 
 """prüfen ob array dimensionen gleich sind  (vonwareb)"""
 
+def equal_matrix_dimensions(matrix_one, matrix_two):
+    """
+    Checks if dimensions of input matrix and output matrix are equal
+    :param array_one:
+    :param array_two:
+    :return: boolean
+    """
+
+    matrix_one_new = np.asarray(matrix_one)
+    matrix_two_new = np.asarray(matrix_two)
+    return matrix_one_new.shape == matrix_two_new.shape
+
 """prüfen ob farb summe gleich bleibt (vonwareb)"""
 
 """pixel verschieben"""
