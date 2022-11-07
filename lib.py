@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+import collections
 
 def rotate_clockwise(matrix):
     return np.array(list(zip(*(reversed(matrix)))))
@@ -48,6 +49,26 @@ def add_border(matrix):
 """prüfen ob array dimensionen gleich sind  (vonwareb)"""
 
 """prüfen ob farb summe gleich bleibt (vonwareb)"""
+def check_same_color_sum(matrix_one, matrix_two):
+    """
+    Compares two matrices for equality of the number of the same color values in both.
+    Matrices are converted to dictionaries for this purpose
+    :param matrix_one:
+    :param matrix_two:
+    :return: added, removed, modified, same, equality
+    """
+
+    d1 = collections.Counter(np.asarray(matrix_one).flatten())
+    d2 = collections.Counter(np.asarray(matrix_two).flatten())
+    d1_keys = set(d1.keys())
+    d2_keys = set(d2.keys())
+    shared_keys = d1_keys.intersection(d2_keys)
+    added = d1_keys - d2_keys
+    removed = d2_keys - d1_keys
+    modified = {o: (d1[o], d2[o]) for o in shared_keys if d1[o] != d2[o]}
+    same = set(o for o in shared_keys if d1[o] == d2[o])
+    equality = len(same) == len(d1)
+    return added, removed, modified, same, equality
 
 """pixel verschieben"""
 
