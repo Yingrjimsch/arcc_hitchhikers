@@ -64,7 +64,18 @@ def add_border(matrix):
 
 """wandinteraktion erkennen"""
 
-"""pixel farbe ändern"""
+"""pixel farbe ändern (vonwareb)"""
+def change_color_pixel(matrix, point, color):
+    """
+    changes color pixel (value in matrix)
+    :param matrix:
+    :param point:
+    :param color: value from 1 to 9
+    :return: matrix with changed pixel
+    """
+    matrix = np.asarray(matrix)
+    matrix[point] = color
+    return matrix
 
 
 """objekt farbe ändern"""
