@@ -49,7 +49,23 @@ def add_border(matrix):
 
 """prüfen ob farb summe gleich bleibt (vonwareb)"""
 
-"""pixel verschieben"""
+"""pixel verschieben (vonwareb)"""
+def move_pixel(matrix, pixel, vector):
+    """
+    Moves a pixel by the specified vector
+    :param matrix:
+    :param pixel:
+    :param vector:
+    :return: changed matrix
+    """
+    np_matrix = np.asarray(matrix)
+    if (pixel[0] + vector[0] or pixel[1] + vector[1]) > np_matrix.shape[0] - 1:
+        np_matrix[pixel] = 0
+        return np_matrix
+    color = np_matrix[pixel]
+    np_matrix[pixel[0] + vector[0], pixel[1] + vector[1]] = color
+    np_matrix[pixel] = 0
+    return np_matrix
 
 """gruppe(objekt) verschieben"""
 
