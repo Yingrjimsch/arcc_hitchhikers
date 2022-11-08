@@ -51,7 +51,19 @@ def add_border(matrix):
 
 """pixel verschieben"""
 
-"""gruppe(objekt) verschieben"""
+"""gruppe(objekt) verschieben (vonwareb)"""
+def move_object(matrix, colorobject, vector):
+    """
+    Moves an object by the specified vector
+    :param matrix:
+    :param colorobject:
+    :param vector:
+    :return: changed matrix
+    """
+    np_matrix = np.asarray(matrix)
+    for pixel in colorobject:
+        move_pixel(np_matrix, pixel, vector)
+    return np_matrix
 
 """muster erkennen (wiederholung von farben)"""
 
