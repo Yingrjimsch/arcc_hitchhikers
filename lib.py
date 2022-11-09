@@ -7,14 +7,21 @@ def rotate_clockwise(matrix):
 def rotate_anticlockwise(matrix):
     return np.array(list(zip(*matrix))[::-1])
 
-def reverse(matrix):
+def rotate_180(matrix):
+    return rotate_clockwise(rotate_clockwise(matrix))
+
+def flip_horizontally(matrix):
     return np.array(list(reversed(matrix)))
 
+def flip_vertically(matrix):
+    return rotate_anticlockwise(flip_horizontally(rotate_clockwise(matrix)))
+
+"""
 def rotate(matrix, move):
     if move == 0:
         return matrix
     elif move == 1:
-        return reverse(matrix)
+        return mirror(matrix)
     elif move == 2:
         return rotate_clockwise(matrix)
     elif move == 3:
@@ -26,13 +33,14 @@ def rotate_back(matrix, move):
     if move == 0:
         return matrix
     elif move == 1:
-        return reverse(matrix)
+        return mirror(matrix)
     elif move == 2:
         return rotate_anticlockwise(matrix)
     elif move == 3:
         return rotate_clockwise(matrix)
     else:
         print('This is not possible')
+"""
         
 """!!!!!!!!Wrapper für matrizen!!!!!!!!"""
 
