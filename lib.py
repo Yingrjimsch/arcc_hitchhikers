@@ -42,6 +42,12 @@ def add_border(matrix):
     return np.pad(matrix, 1, mode='constant', constant_values=10)
 
 """nachbaren erkennen (zurückgeben) pro pixel (kochma2)"""
+def get_pixel_neighbours(matrix, pixel):
+    neighbours = np.zeros((3,3))
+    for i in range(3):
+        for j in range(3):
+            neighbours[i, j] = matrix[pixel[0]-1+i, pixel[1]-1+j]
+    return neighbours
 
 """prüfen dass nachbaren ähnliche farbe haben"""
 
