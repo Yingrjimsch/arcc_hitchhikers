@@ -152,3 +152,95 @@ A human environment is full of objects which change or interact with each other.
 * Orientation
 * Object position
 * ...
+
+
+
+# tobi's eskapaden
+
+## Per-Task Training
+One approach that was initially discussed was the possibility on training a model on each task instead of having one algorythm to solve all of them.
+
+I'm just writing down my thought processes here.
+
+### Idea prerequisites
+
+The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a correct mapping between those 3 inputs (depending on if each function can be derivated, as far as I understood mathematically).
+
+Task1
+||||
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 0 | 0 | 0 |
+
+Solution1
+||||
+|---|---|---|
+| 0 | 1 | 0 |
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+
+Task2
+||||
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 0 | 1 |
+| 0 | 0 | 0 |
+
+Solution2
+||||
+|---|---|---|
+| 0 | 0 | 1 |
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+
+Task3
+||||
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+| 1 | 0 | 0 |
+
+Solution3
+||||
+|---|---|---|
+| 0 | 0 | 0 |
+| 1 | 0 | 0 |
+| 0 | 0 | 0 |
+
+-> Here the logic is that if there is a 1, it moves upwards.
+
+If you train the network on these three problems only, the problem now is that this network is overfitted.
+
+Assumption 1: If the NN finds a solution to all three tasks, it can correctly solve the last task.
+
+This assumption is wrong:
+
+For example, the network would, after training, "contain" the human readable logic:
+If there is a 1 on index (3,2), move it to index (3,1).
+If there is a 1 on index (2,3), move it to index (2,2).
+If there is a 1 on index (1,3), move it to index (1,2).
+
+The model is overfitted. If you run this on a new task, it won't solve it.
+
+The logic that we want is different though -> it would need to be:
+If there is a 1, move the index of it up one row.
+
+-> The correct logic is more general.
+
+Assumption: If we find the most general solution that can solve a set of problems, it must be able to solve the task.
+
+We seem to need a way to be able to find out if this code is general or not.
+
+
+### Functions to reduce complexity
+
+If you were to just try possible permutations on the input to get to the output, you would probably never arrive at a solution because there are too many permutations one can do.
+
+Because we as humans have reasoning, we know for example that a pixel could act like an object with gravity and fall down onto a floor. A computer doesn't. Which is why we want to help the computer by having these kinds of functions predefined.
+
+If we have a limited amount of those functions, we can try to run the functions with random parameters to arrive at a set of function calls that arrive at the solution.
+
+FindObject(1) -> moveObject(up, 1)
+
+In my mind, to solve all ARC tasks, we would need to be able to create a domain language that contains all of the possible ways to interpret and modify the grid. 
