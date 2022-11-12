@@ -164,7 +164,9 @@ I'm just writing down my thought processes here.
 
 ### Idea prerequisites
 
-The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a correct mapping between those 3 inputs (depending on if each function can be derivated, as far as I understood mathematically).
+The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a correct mapping between those 3 inputs (depending on if each layer can be derivated, as far as I understood mathematically).
+
+#### Simple Task Examples
 
 Task1
 ||||
@@ -228,7 +230,9 @@ If there is a 1, move the index of it up one row.
 
 -> The correct logic is more general.
 
-Assumption: If we find the most general solution that can solve a set of problems, it must be able to solve the task.
+Assumption 2: If we find the most general solution that can solve a set of problems, it must be able to solve the task.
+
+TODO: Find out if this assumption is correct.
 
 We seem to need a way to be able to find out if this code is general or not.
 
