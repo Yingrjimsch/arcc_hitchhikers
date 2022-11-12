@@ -164,7 +164,7 @@ I'm just writing down my thought processes here.
 
 ### Idea prerequisites
 
-The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a correct mapping between those 3 inputs (depending on if each layer can be derivated, as far as I understood mathematically).
+The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a mapping (function) between those inputs and outputs (depending on if each layer can be derivated, as far as I understood mathematically).
 
 #### Simple Task Examples
 
@@ -212,7 +212,9 @@ Solution3
 
 -> Here the logic is that if there is a 1, it moves upwards.
 
-If you train the network on these three problems only, the problem now is that this network is overfitted.
+A network is created with input grid 3x3 and output grid 3x3. The layers in between may be any kinds of layers.
+
+If you train the network on these three problems only, the problem now is that this network will overfit.
 
 Assumption 1: If the NN finds a solution to all three tasks, it can correctly solve the last task.
 
@@ -237,6 +239,18 @@ TODO: Find out if this assumption is correct.
 We seem to need a way to be able to find out if this code is general or not.
 
 
+### Kernel thoughts with example
+
+A convoluted layer in a CNN has a kernel that modifies the input. With image stuff, this can be used to find edges. For our example here, using a kernel that looks like this:
+
+||
+|---|
+| 0 |
+| 1 |
+
+would be able to solve the task correctly in a single layer.
+
+
 ### Functions to reduce complexity
 
 If you were to just try possible permutations on the input to get to the output, you would probably never arrive at a solution because there are too many permutations one can do.
@@ -248,3 +262,6 @@ If we have a limited amount of those functions, we can try to run the functions 
 FindObject(1) -> moveObject(up, 1)
 
 In my mind, to solve all ARC tasks, we would need to be able to create a domain language that contains all of the possible ways to interpret and modify the grid. 
+
+
+
