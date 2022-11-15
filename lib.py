@@ -49,25 +49,29 @@ def add_border(matrix):
 """prüfen ob array dimensionen gleich sind  (vonwareb)"""
 
 """prüfen ob farb summe gleich bleibt (vonwareb)"""
+
 def check_same_color_sum(matrix_one, matrix_two):
     """
     Compares two matrices for equality of the number of the same color values in both.
     Matrices are converted to dictionaries for this purpose
     :param matrix_one:
     :param matrix_two:
-    :return: added, removed, modified, same, equality
+    :return: added colors, removed colors,
+    modified colors (count of color pixels in matrix_one and count of color pixels in matrix_two),
+    same colors (count of color pixels in matrix_one and count of color pixels in matrix_two ar equal),
+    equality of matrix_one and matrix_two
     """
 
-    d1 = collections.Counter(np.asarray(matrix_one).flatten())
-    d2 = collections.Counter(np.asarray(matrix_two).flatten())
-    d1_keys = set(d1.keys())
-    d2_keys = set(d2.keys())
-    shared_keys = d1_keys.intersection(d2_keys)
-    added = d1_keys - d2_keys
-    removed = d2_keys - d1_keys
-    modified = {o: (d1[o], d2[o]) for o in shared_keys if d1[o] != d2[o]}
-    same = set(o for o in shared_keys if d1[o] == d2[o])
-    equality = len(same) == len(d1)
+    dict_matrix_one = collections.Counter(np.asarray(matrix_one).flatten())
+    dict_matrix_two = collections.Counter(np.asarray(matrix_two).flatten())
+    dict_matrix_one_keys = set(dict_matrix_one.keys())
+    dict_matrix_two_keys = set(dict_matrix_two.keys())
+    shared_keys = dict_matrix_one_keys.intersection(dict_matrix_two_keys)
+    added = dict_matrix_one_keys - dict_matrix_two_keys
+    removed = dict_matrix_two_keys - dict_matrix_one_keys
+    modified = {obj: (dict_matrix_one[obj], dict_matrix_two[obj]) for obj in shared_keys if dict_matrix_one[obj] != dict_matrix_two[obj]}
+    same = set(obj for obj in shared_keys if dict_matrix_one[obj] == dict_matrix_two[obj])
+    equality = len(same) == len(dict_matrix_one)
     return added, removed, modified, same, equality
 
 """pixel verschieben"""
