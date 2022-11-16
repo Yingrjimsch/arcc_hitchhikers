@@ -89,4 +89,33 @@ def equal_matrix_dimensions(matrix_one, matrix_two):
 
 """racetrack connect shortest path (42oli)"""
 
+"""Pixel der Gravitationskraft folgend verschieben"""
+
+def gravitate_pixel(matrix, pixel):
+    """
+    Pixel following the gravitational force to the lowest possible field in the matrix
+    :param matrix:
+    :param pixel: which should be moved
+    :return: matrix_changed
+    """
+
+    point = (pixel[1], pixel[0])
+    row = point[0]
+    column = point[1]
+    matrix_changed = np.asarray(matrix)
+    print("before: \n", matrix_changed)
+    color = matrix_changed[row][column]
+    matrix_changed[row][column] = 0
+    shape = matrix_changed.shape[0]
+    for i in range(row+1, shape):
+        if matrix[i][column] == 0:
+            continue
+        if matrix[i][column] != 0:
+            point_new = (i-1, column)
+            matrix_changed[point_new[0]][point_new[1]] = color
+        else:
+            point_new = (i, column)
+            matrix_changed[point_new[0]][point_new[1]] = color
+    return matrix_changed #add matrix.tolist() when convert to input type of matrix
+
 
