@@ -89,4 +89,44 @@ def equal_matrix_dimensions(matrix_one, matrix_two):
 
 """racetrack connect shortest path (42oli)"""
 
+""" Verbindung von zwei Pixeln über horizontal-vertikal (vonwwareb)"""
+
+def connect_horizontal_vertical(matrix, pixel_src, pixel_dest):
+    """
+    Connection of two pixels via horizontal - vertical connection. Pixel receives the color of the start pixel
+    :param matrix:
+    :param pixel_src:
+    :param pixel_dest:
+    :return: matrix_changed
+    """
+    point_src = (pixel_src[1],pixel_src[0])
+    point_dest = (pixel_dest[1],pixel_dest[0])
+
+    row_src = point_src[0]
+    column_src = point_src[1]
+
+    row_dest = point_dest[0]
+    column_dest = point_dest[1]
+
+    color = matrix[row_src][column_src]
+    
+    print("before\n", np.asarray(matrix))
+
+    if row_src < row_dest:
+        #top-bottom
+        for i in range(column_src + 1, column_dest +1):
+            matrix[row_src][column_src + 1] = color
+            column_src +=1
+        for j in range(row_src +1, row_dest):
+            matrix[row_src+1][column_dest] = color
+            row_src += 1
+    else:
+        #bottom-top
+        for i in range(column_src + 1, column_dest + 1):
+            matrix[row_src][column_src + 1] = color
+            column_src += 1
+        for j in range(row_dest +1, row_src):
+            matrix[row_src - 1][column_dest] = color
+            row_src -= 1
+    return matrix
 
