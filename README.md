@@ -19,7 +19,7 @@ In this section we try to find a common vocabulary for our technical solution, s
  - A **Pixel** is one Square of an ARC Task Input and is described in more detail below.
  - A **Grid** is the whole Input of an ARC Task and contains multiple objects and pixels.
  - An **Object** is a "small" Grid, which represents a collection of pixels that have a dependency to each other.
- - A **Colleration** is a value that compares two grids, objects or pixels and tries to describe their similarity.
+ - A **Correlation** is a value that compares two grids, objects or pixels and tries to describe their similarity.
 
 ###  Grid indicies
 
@@ -63,7 +63,7 @@ A Grid is a two dimensional Array with shape *NxM* and it's values are defined a
 
 ###  Correlations (WIP)
 
-To get the best possible result we want to find as many correlations as possible. Because of that we want to compare two Grids with each other. After comparing them with a `compare` function we will get a collection of information, we can use as colleration factors:
+To get the best possible result we want to find as many correlations as possible. Because of that we want to compare two Grids with each other. After comparing them with a `compare` function we will get a collection of information, we can use as correlation factors:
 
 * **sameShape**: ***Boolean** | do the grids have the same shape (grid1.shape - grid2.shape == 0?)*
 
@@ -149,10 +149,10 @@ With new insights and new experiences from coding different test methods, we hav
 In this step, grids, pixels and objects are processed in advance to find the greatest possible amount of information we can extract from a single Input. (see Definitions for more Detail)
 
 #### Structure Comparison
-Here, all possible input grids per task are compared with each other. The `compare` function is called which returns a colleration.
+Here, all possible input grids per task are compared with each other. The `compare` function is called which returns a correlation.
 
 #### Structure Evaluation
-In the evaluation step, we will use the colleration we created in Structure Comparison to evaluate all different  collerations. We try to extract the collerations of the collerations (if this makes any sense) and build a Grid, which contains generic versions of Pixel and Objects. Examples for generic versions of these things are:
+In the evaluation step, we will use the correlation we created in Structure Comparison to evaluate all different  correlations. We try to extract the correlations of the correlations (if this makes any sense) and build a Grid, which contains generic versions of Pixel and Objects. Examples for generic versions of these things are:
 * Pixel with [y,x] value set but a flexible color
 * Pixel with flexible y coordinate but fixed x coordinate or color
 * Object Array with two fixed objects with flexible Pixel Size
