@@ -8,33 +8,14 @@ def rotate_clockwise(matrix):
 def rotate_anticlockwise(matrix):
     return np.array(list(zip(*matrix))[::-1])
 
-def reverse(matrix):
+def rotate_180(matrix):
+    return rotate_clockwise(rotate_clockwise(matrix))
+
+def flip_horizontally(matrix):
     return np.array(list(reversed(matrix)))
 
-def rotate(matrix, move):
-    if move == 0:
-        return matrix
-    elif move == 1:
-        return reverse(matrix)
-    elif move == 2:
-        return rotate_clockwise(matrix)
-    elif move == 3:
-        return rotate_anticlockwise(matrix)
-    else:
-        print('This is not possible')
-
-def rotate_back(matrix, move):
-    if move == 0:
-        return matrix
-    elif move == 1:
-        return reverse(matrix)
-    elif move == 2:
-        return rotate_anticlockwise(matrix)
-    elif move == 3:
-        return rotate_clockwise(matrix)
-    else:
-        print('This is not possible')
-
+def flip_vertically(matrix):
+    return rotate_anticlockwise(flip_horizontally(rotate_clockwise(matrix)))
 
 """Funktion extrahiert alle gleichen Farben, returnt matrizen pro farbe (vonwareb)""" 
 def matrix_per_color(matrix):
@@ -354,4 +335,5 @@ def connect_horizontal_vertical(matrix, pixel_src, pixel_dest):
         for j in range(row_dest +1, row_src):
             matrix[row_src - 1][column_dest] = color
             row_src -= 1
-    return matrix    point_src = (pixel_src[1],pixel_src[0])
+        point_src = (pixel_src[1],pixel_src[0])
+        return matrix
