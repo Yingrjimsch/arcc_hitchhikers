@@ -107,7 +107,21 @@ def check_same_color_sum(matrix_one, matrix_two):
 
 """wandinteraktion erkennen"""
 
-"""pixel farbe ändern"""
+"""pixel farbe ändern (vonwareb)"""
+def change_color_pixel(matrix, pixel, color):
+    """
+    changes color pixel (value in matrix)
+    :param matrix:
+    :param point: as [x,y]
+    :param color: value from 1 to 9
+    :return: matrix with changed pixel
+    """
+    point = (pixel[1], pixel[0])
+    matrix = np.asarray(matrix)
+    #print("before: \n", matrix)
+    matrix[point] = color
+    #print("after: \n", matrix)
+    return matrix
 
 
 """objekt farbe ändern"""
