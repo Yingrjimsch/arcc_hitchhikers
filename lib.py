@@ -208,7 +208,7 @@ def gravitate_pixel(matrix, pixel):
     row = point[0]
     column = point[1]
     matrix_changed = np.asarray(matrix)
-    print("before: \n", matrix_changed)
+    #print("before: \n", matrix_changed)
     color = matrix_changed[row][column]
     matrix_changed[row][column] = 0
     shape = matrix_changed.shape[0]
@@ -222,5 +222,20 @@ def gravitate_pixel(matrix, pixel):
             point_new = (i, column)
             matrix_changed[point_new[0]][point_new[1]] = color
     return matrix_changed #add matrix.tolist() when convert to input type of matrix
+
+
+"""Gruppe von Pixeln (Objekt) wird der Schwerkraft folgend verschoben"""
+
+def gravitate_object(matrix, pixel_group):
+    """
+    Group of Pixels (as object) following the gravitational force to the lowest possible fields in the matrix
+    :param matrix:
+    :param object: group of pixels which should be moved
+    :return: matrix_changed
+    """
+    #print("before:\n", np.asarray(matrix))
+    for pixel in pixel_group:
+        matrix = gravitate_pixel(matrix, pixel)
+    return matrix
 
 
