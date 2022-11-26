@@ -166,7 +166,19 @@ def change_color_pixel(matrix, pixel, color):
     return matrix
 
 
-"""objekt farbe ändern"""
+"""objekt farbe ändern (vonwareb)"""
+def change_color_object(matrix, colorobject, color):
+    """
+    changes color of a whole object in a matrix
+    :param matrix:
+    :param object:
+    :param color:
+    :return:
+    """
+
+    for pixel in colorobject:
+        change_color_pixel(matrix, pixel, color)
+    return matrix
 
 """racetrack connect shortest path (42oli)"""
 
