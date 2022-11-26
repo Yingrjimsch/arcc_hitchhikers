@@ -1,6 +1,8 @@
 import numpy as np
 import collections
 
+FILENAME = 'correlation_functions'
+
 """find and return the a grid of neighbouring pixels with selected pixel in center"""
 def get_pixel_neighbours(matrix, pixel):
     neighbours = np.zeros((3,3))
@@ -44,3 +46,7 @@ def check_same_color_sum(matrix_one, matrix_two):
     same = set(obj for obj in shared_keys if dict_matrix_one[obj] == dict_matrix_two[obj])
     equality = len(same) == len(dict_matrix_one)
     return added, removed, modified, same, equality
+
+def same_shape_diff(grid_one, grid_two):
+    return abs(np.asarray(grid_one) - np.asarray(grid_two))
+    
