@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+import collections
 
 def rotate_clockwise(matrix):
     return np.array(list(zip(*(reversed(matrix)))))
@@ -66,6 +67,30 @@ def equal_matrix_dimensions(matrix_one, matrix_two):
     return matrix_one_new.shape == matrix_two_new.shape
 
 """prüfen ob farb summe gleich bleibt (vonwareb)"""
+
+def check_same_color_sum(matrix_one, matrix_two):
+    """
+    Compares two matrices for equality of the number of the same color values in both.
+    Matrices are converted to dictionaries for this purpose
+    :param matrix_one:
+    :param matrix_two:
+    :return: added colors, removed colors,
+    modified colors (count of color pixels in matrix_one and count of color pixels in matrix_two),
+    same colors (count of color pixels in matrix_one and count of color pixels in matrix_two ar equal),
+    equality of matrix_one and matrix_two
+    """
+
+    dict_matrix_one = collections.Counter(np.asarray(matrix_one).flatten())
+    dict_matrix_two = collections.Counter(np.asarray(matrix_two).flatten())
+    dict_matrix_one_keys = set(dict_matrix_one.keys())
+    dict_matrix_two_keys = set(dict_matrix_two.keys())
+    shared_keys = dict_matrix_one_keys.intersection(dict_matrix_two_keys)
+    added = dict_matrix_one_keys - dict_matrix_two_keys
+    removed = dict_matrix_two_keys - dict_matrix_one_keys
+    modified = {obj: (dict_matrix_one[obj], dict_matrix_two[obj]) for obj in shared_keys if dict_matrix_one[obj] != dict_matrix_two[obj]}
+    same = set(obj for obj in shared_keys if dict_matrix_one[obj] == dict_matrix_two[obj])
+    equality = len(same) == len(dict_matrix_one)
+    return added, removed, modified, same, equality
 
 """pixel verschieben"""
 
