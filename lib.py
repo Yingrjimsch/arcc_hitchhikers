@@ -93,6 +93,31 @@ def check_same_color_sum(matrix_one, matrix_two):
     return added, removed, modified, same, equality
 
 """pixel verschieben"""
+def move_pixel(matrix, pixel, vector):
+    """
+    Moves a pixel by the specified vector
+    :param matrix:
+    :param pixel: as [x,y]
+    :param vector:
+    :return: changed matrix
+    """
+    #changes pixel [x,y] to point (y,x)
+    point = (pixel[1], pixel[0])
+    #changes vector [x,y] to vector_transformed (y,x)
+    vector_transformed = (vector[1], vector[0])
+    matrix_copied = np.asarray(matrix)
+    '''
+    Checks if the pixel is moved beyond the edge of the matrix.
+    If yes, the original pixel is set to color black and no new pixel is set at the new position.
+    '''
+    if (point[0] + vector_transformed[0] or point[1] + vector_transformed[1]) > matrix_copied.shape[0] - 1:
+        matrix_copied[point] = 0
+        return matrix_copied
+    color = matrix_copied[point]
+    print("color: ", color)
+    matrix_copied[point[0] + vector_transformed[0], point[1] + vector_transformed[1]] = color
+    matrix_copied[point] = 0
+    return matrix_copied
 
 """gruppe(objekt) verschieben"""
 
