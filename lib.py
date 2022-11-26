@@ -43,10 +43,28 @@ def add_border(matrix):
     return np.pad(matrix, 1, mode='constant', constant_values=10)
 
 """nachbaren erkennen (zurückgeben) pro pixel (kochma2)"""
+def get_pixel_neighbours(matrix, pixel):
+    neighbours = np.zeros((3,3))
+    for i in range(3):
+        for j in range(3):
+            neighbours[i, j] = matrix[pixel[0]-1+i, pixel[1]-1+j]
+    return neighbours
 
 """prüfen dass nachbaren ähnliche farbe haben"""
 
 """prüfen ob array dimensionen gleich sind  (vonwareb)"""
+
+def equal_matrix_dimensions(matrix_one, matrix_two):
+    """
+    Checks if dimensions of input matrix and output matrix are equal
+    :param array_one:
+    :param array_two:
+    :return: boolean
+    """
+
+    matrix_one_new = np.asarray(matrix_one)
+    matrix_two_new = np.asarray(matrix_two)
+    return matrix_one_new.shape == matrix_two_new.shape
 
 """prüfen ob farb summe gleich bleibt (vonwareb)"""
 
