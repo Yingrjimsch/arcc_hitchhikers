@@ -159,7 +159,31 @@ def move_object(matrix, colorobject, vector):
 
 """objekt duplizieren"""
 
-"""wandinteraktion erkennen"""
+
+"""wandinteraktion erkennen (vonwareb)"""
+
+
+def border_interaction(matrix, pixel):
+    """
+    Checks whether the neighboring pixels are edge points
+    :param matrix:
+    :param pixel:
+    :return: dictionary of borders 0 = no edge point; 1 = edge point
+    """
+    border_value = 10
+    borders = {"UP": 0, "DOWN": 0, "LEFT": 0, "RIGHT": 0}
+    neighbors = get_pixel_neighbours(matrix, pixel)
+    pixel_center_neighbors = (1, 1)
+    print(neighbors)
+    if neighbors[pixel_center_neighbors[0] - 1, pixel_center_neighbors[1]] == border_value:
+        borders.update({"UP": 1})
+    if neighbors[pixel_center_neighbors[0] + 1, pixel_center_neighbors[1]] == border_value:
+        borders.update({"DOWN": 1})
+    if neighbors[pixel_center_neighbors[0], pixel_center_neighbors[1] - 1] == border_value:
+        borders.update({"LEFT": 1})
+    if neighbors[pixel_center_neighbors[0], pixel_center_neighbors[1] + 1] == border_value:
+        borders.update({"RIGHT": 1})
+    return borders
 
 """pixel farbe ändern (vonwareb)"""
 def change_color_pixel(matrix, pixel, color):
@@ -326,6 +350,7 @@ def connect_horizontal_vertical(matrix, pixel_src, pixel_dest):
     :param pixel_dest:
     :return: matrix_changed
     """
+    point_src = (pixel_src[1],pixel_src[0])
     point_dest = (pixel_dest[1],pixel_dest[0])
 
     row_src = point_src[0]
@@ -354,4 +379,4 @@ def connect_horizontal_vertical(matrix, pixel_src, pixel_dest):
         for j in range(row_dest +1, row_src):
             matrix[row_src - 1][column_dest] = color
             row_src -= 1
-    return matrix    point_src = (pixel_src[1],pixel_src[0])
+    return matrix    
