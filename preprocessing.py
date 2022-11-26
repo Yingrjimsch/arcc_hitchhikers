@@ -7,6 +7,18 @@ TRAINING_DATA_FOLDER_NAME = 'arcdata/evaluation';
 fileNames = os.listdir(TRAINING_DATA_FOLDER_NAME);
 fileNames = list(filter(lambda x: 'label' not in x, fileNames))
 
+class Pixel:
+    def __init__(self, color, coord):
+        self.color = color
+        self.coord = coord
+        
+class Grid:
+    def __init__(self, raw_grid):
+        self.shape = raw_grid.shape
+        self.size = np.sum(raw_grid)
+        self.pixels = [Pixel(color, i) for i,color in enumerate(raw_grid.flatten())]
+        self.colors = np.unique(raw_grid)
+
 def evaluate_effectiveness_of_function(function):
     """
     The idea of this function is that a newly created library function can be tested directly on the evaluation data 
