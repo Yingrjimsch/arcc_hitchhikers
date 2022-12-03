@@ -14,10 +14,14 @@ class Pixel:
         
 class Grid:
     def __init__(self, raw_grid):
+        self.raw = raw_grid
         self.shape = raw_grid.shape
-        self.size = np.sum(raw_grid)
+        self.sum = np.sum(raw_grid)
+        self.size = len(np.nonzero(raw_grid!=BORDER_VALUE))
         self.pixels = [Pixel(color, i) for i,color in enumerate(raw_grid.flatten())]
         self.colors = np.unique(raw_grid)
+        self.objects = []
+        self.patterns = []
 
 def evaluate_effectiveness_of_function(function):
     """
