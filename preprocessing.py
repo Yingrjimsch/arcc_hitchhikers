@@ -20,7 +20,7 @@ class Grid:
         self.size = len(np.nonzero(raw_grid!=BORDER_VALUE))
         self.pixels = [Pixel(color, i) for i,color in enumerate(raw_grid.flatten())]
         self.colors = np.unique(raw_grid)
-        self.objects = []
+        self.objects = find_objects(matrix)
         self.patterns = []
 
 def evaluate_effectiveness_of_function(function):
