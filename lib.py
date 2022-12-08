@@ -42,3 +42,6 @@ def connect_vertical_horizontal(matrix, pixel_src, pixel_dest):
             matrix[row_dest][column_src + 1] = color
             column_src += 1
     return matrix
+
+def dark_magic():
+    return
