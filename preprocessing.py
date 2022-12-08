@@ -20,7 +20,7 @@ class Grid:
         self.size = len(np.nonzero(raw_grid!=BORDER_VALUE))
         self.pixels = [Pixel(color, i) for i,color in enumerate(raw_grid.flatten())]
         self.colors = np.unique(raw_grid)
-        self.objects = []
+        self.objects = find_objects(matrix)
         self.patterns = []
 
 def evaluate_effectiveness_of_function(function):
@@ -65,3 +65,31 @@ def matrix_per_color(matrix):
                     matrix_result[j] = i
             result_matrices.append(matrix_result)
     return result_matrices
+
+
+""""
+This function is used by find_objects
+"""
+def get_neighbouring_pixels_recursively(matrix, pixel, seen_pos):
+    if matrix[pixel[0], pixel[1]] == 0:
+        return
+    seen_pos.append(Pixel(matrix[pixel[0], pixel[1]], [pixel[0], pixel[1]]))
+    for i in range(3):
+        for j in range(3):
+            d = Pixel(matrix[pixel[0]-1+i, pixel[1]-1+j], [pixel[0]-1+i, pixel[1]-1+j])
+            if (all(obj.coord != d.coord for obj in seen_pos)) and d.color != 0:
+                get_neighbouring_pixels_recursively(matrix, d.coord, seen_pos)
+    return seen_pos
+
+#1. Suche erste Zahl, welche nicht 0 oder 10 ist
+#2. Get Neighbours rekursiv bis alle neighbours schon im objekt oder 0 oder 10 sind
+#3. suche nächste Zahl, welche in keinem objekt vorkommt und nicht 0 ist
+def find_objects(matrix):
+    cluster = []
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            if matrix[i][j] == 0 or (cluster and any([i,j] == obj.coord for obj in np.concatenate(np.asarray(cluster, dtype=object)).ravel())):
+                continue
+            d = get_neighbouring_pixels_recursively(matrix, [i, j], [])
+            cluster.append(np.array(d))
+    return cluster
