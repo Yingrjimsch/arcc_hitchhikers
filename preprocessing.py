@@ -93,3 +93,14 @@ def find_objects(matrix):
             d = get_neighbouring_pixels_recursively(matrix, [i, j], [])
             cluster.append(np.array(d))
     return cluster
+
+"""
+In dieser funktion wird preprocessing für alle matrizen durchgeführt.
+Return value ist eine 2D array von input output Grid Objects
+[[Grid_Input_1, Grid_Output_1],
+ [Grid_Input_2, Grid_Output_2],
+  [Grid_Input_3, Grid_Output_3]]
+"""
+def preprocess(matrices):
+    return
+    

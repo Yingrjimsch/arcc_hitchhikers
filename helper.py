@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colors
 
 cmap = colors.ListedColormap(['black', 'blue', 'red', 'green', 'yellow', 'grey', 'pink', 'orange', 'cyan', 'darkred'])
+
 def printGrid(ax, data):
   ax.imshow(data, cmap=cmap, norm=colors.Normalize(vmin=0, vmax=9))
   ax.grid(which='major', axis='both', color='w', linewidth=1)
@@ -18,7 +19,6 @@ def printGrid(ax, data):
 
 def getSize(grid):
   return f'{len(grid)}x{len(grid[0])}'
-
 
 def displayIO(grids):
   plt.rcParams['figure.figsize'] = [20, 5]

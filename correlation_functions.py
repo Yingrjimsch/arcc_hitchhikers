@@ -50,3 +50,10 @@ def check_same_color_sum(matrix_one, matrix_two):
 def same_shape_diff(grid_one, grid_two):
     return abs(np.asarray(grid_one) - np.asarray(grid_two))
     
+"""
+Vergleicht die Grid Objekte auf ihre properties
+Returnt ein Grid Objekt mit allen korrelationen
+(dinge die nicht gleich sind können mit einem Placeholder ausgefüllt werden) 
+"""
+def correlate(m1, m2):
+    return
