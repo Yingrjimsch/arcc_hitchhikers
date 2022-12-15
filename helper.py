@@ -27,3 +27,4 @@ def displayIO(grids):
   for i, grid in enumerate(grids):
     axs[i].set_title(f'{grid[1]}'); 
     printGrid(axs[i], grid[0]);
+  plt.show()
