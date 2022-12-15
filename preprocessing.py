@@ -73,11 +73,7 @@ def matrix_per_color(matrix):
             result_matrices.append(matrix_result)
     return result_matrices
 
-
-""""
-This function is used by find_objects
-"""
-def get_neighbouring_pixels_recursively(matrix, pixel, seen_pos):
+def get_pixel_neighbours_recursive(matrix, pixel, seen_pos):
     if matrix[pixel[0], pixel[1]] == 0:
         return
     seen_pos.append(Pixel(matrix[pixel[0], pixel[1]], [pixel[0], pixel[1]]))
@@ -85,21 +81,35 @@ def get_neighbouring_pixels_recursively(matrix, pixel, seen_pos):
         for j in range(3):
             d = Pixel(matrix[pixel[0]-1+i, pixel[1]-1+j], [pixel[0]-1+i, pixel[1]-1+j])
             if (all(obj.coord != d.coord for obj in seen_pos)) and d.color != 0:
-                get_neighbouring_pixels_recursively(matrix, d.coord, seen_pos)
+                get_pixel_neighbours_recursive(matrix, d.coord, seen_pos)
     return seen_pos
 
 #1. Suche erste Zahl, welche nicht 0 oder 10 ist
 #2. Get Neighbours rekursiv bis alle neighbours schon im objekt oder 0 oder 10 sind
 #3. suche nächste Zahl, welche in keinem objekt vorkommt und nicht 0 ist
-def find_objects(matrix):
+def find_objects(matrix, size):
+    #print(matrix)
     cluster = []
     for i in range(len(matrix)):
         for j in range(len(matrix)):
-            if matrix[i][j] == 0 or (cluster and any([i,j] == obj.coord for obj in np.concatenate(np.asarray(cluster, dtype=object)).ravel())):
+            if matrix[i][j] == 0 or (cluster and any([i,j] == obj.coord for obj in np.concatenate(np.asarray(list(map(Grid.getPixels, cluster)), dtype=object)).ravel())):
                 continue
-            d = get_neighbouring_pixels_recursively(matrix, [i, j], [])
-            cluster.append(np.array(d))
+            d = get_pixel_neighbours_recursive(matrix, [i, j], [])
+            if math.ceil(np.asarray(d).size / 2) * 2 == size:
+                return
+            raw_child = normalize(d)
+            cluster.append(Grid(raw_child, d))
     return cluster
+
+def normalize(pixels):
+    x = max(list(map(Pixel.getX, pixels))) - min(list(map(Pixel.getX, pixels)))
+    y = max(list(map(Pixel.getY, pixels))) - min(list(map(Pixel.getY, pixels)))
+    raw = np.zeros((x + 1,y + 1))
+    
+    for p in pixels:
+        raw[(p.getX() - min(list(map(Pixel.getX, pixels))), p.getY() - min(list(map(Pixel.getY, pixels))))] = p.color
+    return raw
+
 
 """
 In dieser funktion wird preprocessing für alle matrizen durchgeführt.
