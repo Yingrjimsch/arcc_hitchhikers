@@ -2,26 +2,34 @@ import os
 import json
 import numpy as np
 
-BORDER_VALUE = 10
+BORDER_VALUE = 0
 TRAINING_DATA_FOLDER_NAME = 'arcdata/evaluation';
 fileNames = os.listdir(TRAINING_DATA_FOLDER_NAME);
 fileNames = list(filter(lambda x: 'label' not in x, fileNames))
 
 class Pixel:
+    def getX(self):
+        return self.coord[0]
+    def getY(self):
+        return self.coord[1]
     def __init__(self, color, coord):
         self.color = color
         self.coord = coord
         
 class Grid:
-    def __init__(self, raw_grid):
+    def getPixels(self):
+        return self.pixels
+    def __init__(self, raw_grid, pixels=[]):
         self.raw = raw_grid
         self.shape = raw_grid.shape
         self.sum = np.sum(raw_grid)
-        self.size = len(np.nonzero(raw_grid!=BORDER_VALUE))
-        self.pixels = [Pixel(color, i) for i,color in enumerate(raw_grid.flatten())]
+        self.size = len(np.nonzero(raw_grid!=0))
+        if(pixels):
+            self.pixels = pixels
+        else:
+            self.pixels = [Pixel(color, [i[0], i[1]]) for i, color in np.ndenumerate(raw_grid)]
         self.colors = np.unique(raw_grid)
-        self.objects = find_objects(matrix)
-        self.patterns = []
+        self.objects = find_objects(pp.add_border(raw_grid), np.asarray(raw_grid).size)
 
 def evaluate_effectiveness_of_function(function):
     """
@@ -29,7 +37,6 @@ def evaluate_effectiveness_of_function(function):
     (how many problems could be solved right away with this functionality).
     """
     solved_files = []
-    #print(fileNames)
     for fileName in fileNames:
         with open(f'{TRAINING_DATA_FOLDER_NAME}/{fileName}', 'r') as file:
             data = json.loads(file.read())
@@ -103,4 +110,3 @@ Return value ist eine 2D array von input output Grid Objects
 """
 def preprocess(matrices):
     return
-    
