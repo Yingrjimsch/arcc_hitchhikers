@@ -17,7 +17,9 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 <th>Output</th>
 </tr>
 <tr>
-<td>```json
+<td>
+
+```json
 {
     "raw": [
         [0,0,0,0,0,0,0,0],
