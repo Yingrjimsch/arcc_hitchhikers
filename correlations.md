@@ -11,7 +11,13 @@ As an example, the following input, output data are provided:
 //TODO Image
 These two two-dimensional arrays are mapped into grids and look like this after preprocessing:
 //TODO screenshot from Grids
-```json
+<table>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+<tr>
+<td>```json
 {
     "raw": [
         [0,0,0,0,0,0,0,0],
@@ -181,3 +187,19 @@ These two two-dimensional arrays are mapped into grids and look like this after 
     ]
 }
 ```
+
+</td>
+<td>
+
+```json
+{
+  "id": 5,
+  "username": "mary",
+  "email": "mary@example.com",
+  "order_id": "f7177da"
+}
+```
+
+</td>
+</tr>
+</table>
