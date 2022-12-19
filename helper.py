@@ -5,6 +5,8 @@ Created on Sat Nov 26 14:07:33 2022
 """
 import numpy as np
 import matplotlib.pyplot as plt
+import json
+from json import JSONEncoder
 from matplotlib import colors
 
 cmap = colors.ListedColormap(['black', 'blue', 'red', 'green', 'yellow', 'grey', 'pink', 'orange', 'cyan', 'darkred'])
@@ -28,3 +30,20 @@ def displayIO(grids):
     axs[i].set_title(f'{grid[1]}'); 
     printGrid(axs[i], grid[0]);
   plt.show()
+
+
+class HitchHikersEncoder(JSONEncoder):
+  """
+    Used as follows:
+    import json
+    json.dumps(g, indent=4, cls=HitchHikersEncoder)
+  """
+  def default(self, obj):
+    if isinstance(obj, np.integer):
+      return int(obj)
+    if isinstance(obj, np.floating):
+      return float(obj)
+    if isinstance(obj, np.ndarray):
+      return obj.tolist()
+    return obj.__dict__
+  
