@@ -61,17 +61,13 @@ def matrix_per_color(matrix):
     :param matrix:
     :return: result_matrices
     """
-    matrix = np.asarray(matrix).flatten()
-    result_matrices = []
-    for i in range(1, 9):
-        matrix_copy = np.copy(matrix == i)
-        matrix_result = np.zeros(matrix_copy.shape)
-        if np.sum(matrix_copy == True) > 0:
-            for j in range(matrix_copy.size):
-                if matrix_copy[j]:
-                    matrix_result[j] = i
-            result_matrices.append(matrix_result)
-    return result_matrices
+    grids_by_color = []
+    for i in np.nditer(np.unique(matrix)):
+        if i == 0:
+            continue
+        grids_by_color.append(np.where(matrix==i, True, False) * i)
+    grids_by_color.append(matrix)
+    return grids_by_color
 
 def get_pixel_neighbours_recursive(matrix, pixel, seen_pos):
     if matrix[pixel[0], pixel[1]] == 0:
