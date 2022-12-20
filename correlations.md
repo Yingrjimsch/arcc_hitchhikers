@@ -196,7 +196,7 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 ```json
 {
     "raw": [
-		[0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0],
         [0,0,0,0,0,1,1,1],
         [0,0,0,0,0,1,1,1],
