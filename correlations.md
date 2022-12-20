@@ -10,7 +10,7 @@ To get the best possible result the goal is to find as many correlations as poss
 As an example, the following input, output data are provided:
 //TODO Image
 These two two-dimensional arrays are mapped into grids and look like this after preprocessing:
-//TODO screenshot from Grids
+//TODO new grids with objects per color
 <table style="width: 100%">
 <tr>
 <th>Input</th>
@@ -201,8 +201,8 @@ These two two-dimensional arrays are mapped into grids and look like this after 
         [0,0,0,0,0,1,1,1],
         [0,0,0,0,0,1,1,1],
         [0,0,0,0,0,0,5,5],
-        [0,0,0,0,0,2,2],
-        [0,0,0,0,2,2,2],
+        [0,0,0,0,0,0,2,2],
+        [0,0,0,0,0,2,2,2],
         [0,0,0,0,0,0,0,0]
     ],
     "shape": [8,8],
@@ -314,3 +314,29 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 </td>
 </tr>
 </table>
+
+
+As a human can see pretty fast one part of the logic behind the input / output is it to move all the colored pixels to the bottom right corner. Another (not that clear) logic is to color all pixels below the gray line with one color and those above it with another color. In this case red and blue.
+
+With these two grids the `correlation` function can be called. Which needs to compare both of these grids and get correlations as follows:
+//TODO: matthias maybe you find more correlations we can use
+* `sameShape = true` | ... no zooming, scaling, cropping happened ...
+* `sameSum = false` | ... some kind of color swapping ...
+* `sameSize = true` | ... no added pixels, removed pixels, duplicating ...
+* `sameColor = true` | ... no added colors, recoloring of existing things ...
+* `colorDiff = []` | same as `sameColor`in this case ...
+* `sameObjects = []` //TODO: hier ergänzen mit Objects per color
+* `diff = [
+ [0 0 0 0 0 0 0 0]
+ [0 0 1 1 1 0 0 0]
+ [0 0 1 1 1 0 0 0]
+ [0 0 0 0 0 1 1 1]
+ [0 0 5 5 0 1 1 1]
+ [0 0 0 0 0 1 4 5]
+ [0 0 0 0 2 2 0 2]
+ [0 0 0 0 0 2 2 2]]` | ... pixels have been moved, the number 4 is interesting ...
+ 
+ The other generated value will be a `Grid` object, which is an abstracton of the compared Grids as follows:
+ 
+ //TODO will be added after generation
+ 
