@@ -11,7 +11,7 @@ As an example, the following input, output data are provided:
 //TODO Image
 These two two-dimensional arrays are mapped into grids and look like this after preprocessing:
 //TODO screenshot from Grids
-<table>
+<table style="width: 100%">
 <tr>
 <th>Input</th>
 <th>Output</th>
