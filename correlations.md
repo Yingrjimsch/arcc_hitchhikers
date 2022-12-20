@@ -195,10 +195,120 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 
 ```json
 {
-  "id": 5,
-  "username": "mary",
-  "email": "mary@example.com",
-  "order_id": "f7177da"
+    "raw": [
+        "raw": [
+		[0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,1,1,1],
+        [0,0,0,0,0,1,1,1],
+        [0,0,0,0,0,0,5,5],
+        [0,0,0,0,0,2,2],
+        [0,0,0,0,2,2,2],
+        [0,0,0,0,0,0,0,0]
+    ],
+    "shape": [8,8],
+    "sum": 26,
+    "size": 2,
+    "pixels": [
+	    ...
+        {
+            "color": 1,
+            "coord": [
+                3,
+                5
+            ]
+        },
+        {
+            "color": 1,
+            "coord": [
+                3,
+                6
+            ]
+        },
+        {
+            "color": 1,
+            "coord": [
+                3,
+                7
+            ]
+        },
+		...
+        {
+            "color": 1,
+            "coord": [
+                4,
+                5
+            ]
+        },
+        {
+            "color": 1,
+            "coord": [
+                4,
+                6
+            ]
+        },
+        {
+            "color": 1,
+            "coord": [
+                4,
+                7
+            ]
+        },
+		...
+        {
+            "color": 5,
+            "coord": [
+                5,
+                6
+            ]
+        },
+        {
+            "color": 5,
+            "coord": [
+                5,
+                7
+            ]
+        },
+		...
+        {
+            "color": 2,
+            "coord": [
+                6,
+                6
+            ]
+        },
+        {
+            "color": 2,
+            "coord": [
+                6,
+                7
+            ]
+        },
+		...
+        {
+            "color": 2,
+            "coord": [
+                7,
+                5
+            ]
+        },
+        {
+            "color": 2,
+            "coord": [
+                7,
+                6
+            ]
+        },
+        {
+            "color": 2,
+            "coord": [
+                7,
+                7
+            ]
+        }
+    ],
+    "colors": [0,1,2,5],
+    "objects": null
 }
 ```
 
