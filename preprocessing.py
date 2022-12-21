@@ -1,6 +1,7 @@
 import os
 import json
 import numpy as np
+from skimage.measure import label, regionprops
 
 BORDER_VALUE = 0
 TRAINING_DATA_FOLDER_NAME = 'arcdata/evaluation';
@@ -19,17 +20,17 @@ class Pixel:
 class Grid:
     def getPixels(self):
         return self.pixels
-    def __init__(self, raw_grid, pixels=[]):
+    def __init__(self, raw_grid, pixels=[], child=False):
         self.raw = raw_grid
         self.shape = raw_grid.shape
         self.sum = np.sum(raw_grid)
-        self.size = len(np.nonzero(raw_grid!=0))
+        self.size = np.count_nonzero(raw_grid)
         if(pixels):
             self.pixels = pixels
         else:
             self.pixels = [Pixel(color, [i[0], i[1]]) for i, color in np.ndenumerate(raw_grid)]
         self.colors = np.unique(raw_grid)
-        self.objects = find_objects(pp.add_border(raw_grid), np.asarray(raw_grid).size)
+        self.objects = find_objects(raw_grid, child)
 
 def evaluate_effectiveness_of_function(function):
     """
@@ -69,33 +70,19 @@ def matrix_per_color(matrix):
     grids_by_color.append(matrix)
     return grids_by_color
 
-def get_pixel_neighbours_recursive(matrix, pixel, seen_pos):
-    if matrix[pixel[0], pixel[1]] == 0:
-        return
-    seen_pos.append(Pixel(matrix[pixel[0], pixel[1]], [pixel[0], pixel[1]]))
-    for i in range(3):
-        for j in range(3):
-            d = Pixel(matrix[pixel[0]-1+i, pixel[1]-1+j], [pixel[0]-1+i, pixel[1]-1+j])
-            if (all(obj.coord != d.coord for obj in seen_pos)) and d.color != 0:
-                get_pixel_neighbours_recursive(matrix, d.coord, seen_pos)
-    return seen_pos
-
 #1. Suche erste Zahl, welche nicht 0 oder 10 ist
 #2. Get Neighbours rekursiv bis alle neighbours schon im objekt oder 0 oder 10 sind
 #3. suche nächste Zahl, welche in keinem objekt vorkommt und nicht 0 ist
-def find_objects(matrix, size):
-    #print(matrix)
-    cluster = []
-    for i in range(len(matrix)):
-        for j in range(len(matrix)):
-            if matrix[i][j] == 0 or (cluster and any([i,j] == obj.coord for obj in np.concatenate(np.asarray(list(map(Grid.getPixels, cluster)), dtype=object)).ravel())):
-                continue
-            d = get_pixel_neighbours_recursive(matrix, [i, j], [])
-            if math.ceil(np.asarray(d).size / 2) * 2 == size:
-                return
-            raw_child = normalize(d)
-            cluster.append(Grid(raw_child, d))
-    return cluster
+def find_objects(raw_grid, child):
+    if child == True:
+        return
+    objects = []
+    for i in regionprops(label(raw_grid, connectivity=2)):
+        grid = []
+        for j in i.coords:    
+            grid.append(Pixel(raw_grid[j[0]][j[1]], j))
+        objects.append(Grid(normalize(grid), grid, True))
+    return objects
 
 def normalize(pixels):
     x = max(list(map(Pixel.getX, pixels))) - min(list(map(Pixel.getX, pixels)))
