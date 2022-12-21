@@ -33,9 +33,9 @@ These two two-dimensional arrays are mapped into grids and look like this after 
     ],
     "shape": [8,8],
     "sum": 24,
-    "size": 2,
-    "pixels": [.
-	    ...
+    "size": 13,
+    "pixels": [
+        ...
         {
             "color": 1,
             "coord": [1,2]
@@ -61,7 +61,7 @@ These two two-dimensional arrays are mapped into grids and look like this after 
             "color": 1,
             "coord": [2,4]
         },
-		...
+        ...
         {
             "color": 5,
             "coord": [4,2]
@@ -70,7 +70,7 @@ These two two-dimensional arrays are mapped into grids and look like this after 
             "color": 5,
             "coord": [4,3]
         },
-		...
+        ...
         {
             "color": 1,
             "coord": [5,5]
@@ -92,19 +92,35 @@ These two two-dimensional arrays are mapped into grids and look like this after 
             "color": 2,
             "coord": [6,6]
         },
-		...
+        ...
     ],
     "colors": [0,1,2,5],
     "objects": [
         {
             "raw": [
-                [1,1,1],
-                [1,1,1]
+                [1.0,1.0,1.0],
+                [1.0,1.0,1.0]
             ],
             "shape": [2,3],
-            "sum": 6,
-            "size": 2,
+            "sum": 6.0,
+            "size": 6,
             "pixels": [
+                {
+                    "color": 1,
+                    "coord": [1,2]
+                },
+                {
+                    "color": 1,
+                    "coord": [1,3]
+                },
+                {
+                    "color": 1,
+                    "coord": [1,4]
+                },
+                {
+                    "color": 1,
+                    "coord": [2,2]
+                },
                 {
                     "color": 1,
                     "coord": [2,3]
@@ -112,78 +128,73 @@ These two two-dimensional arrays are mapped into grids and look like this after 
                 {
                     "color": 1,
                     "coord": [2,4]
-                },
-                {
-                    "color": 1,
-                    "coord": [2,5]
-                },
-                {
-                    "color": 1,
-                    "coord": [3,4]
-                },
-                {
-                    "color": 1,
-                    "coord": [3,3]
-                },
-                {
-                    "color": 1,
-                    "coord": [3,5]
                 }
             ],
-            "colors": [1],
+            "colors": [1.0],
             "objects": null
         },
         {
             "raw": [
-                [5,5]
+                [5.0,5.0]
             ],
             "shape": [1,2],
-            "sum": 10,
+            "sum": 10.0,
             "size": 2,
             "pixels": [
                 {
                     "color": 5,
-                    "coord": [5,3]
+                    "coord": [4,2]
                 },
                 {
                     "color": 5,
-                    "coord": [5,4]
+                    "coord": [4,3]
                 }
             ],
-            "colors": [5],
+            "colors": [5.0],
             "objects": null
         },
         {
             "raw": [
-                [0,1,1],
-                [2,2,2]
+                [1.0,1.0]
             ],
-            "shape": [2,3],
-            "sum": 8.0,
+            "shape": [1,2],
+            "sum": 2.0,
             "size": 2,
             "pixels": [
                 {
                     "color": 1,
-                    "coord": [6,6]
+                    "coord": [5,5]
                 },
                 {
                     "color": 1,
-                    "coord": [6,7]
-                },
-                {
-                    "color": 2,
-                    "coord": [7,6]
-                },
-                {
-                    "color": 2,
-                    "coord": [7,5]
-                },
-                {
-                    "color": 2,
-                    "coord": [7,7]
+                    "coord": [5,6]
                 }
             ],
-            "colors": [0,1,2],
+            "colors": [1.0],
+            "objects": null
+        },
+        {
+            "raw": [
+                [2.0,2.0,2.0]
+            ],
+            "shape": [1,3],
+            "sum": 6.0,
+            "size": 3,
+            "pixels": [
+                {
+                    "color": 2,
+                    "coord": [6,4]
+                },
+                {
+                    "color": 2,
+                    "coord": [6,5]
+                },
+                {
+                    "color": 2,
+                    "coord": [6,6]
+                }
+            ],
+            "colors": [2.0],
             "objects": null
         }
     ]
@@ -196,118 +207,170 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 ```json
 {
     "raw": [
-	[0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,1,1,1],
-        [0,0,0,0,0,1,1,1],
-        [0,0,0,0,0,0,5,5],
-        [0,0,0,0,0,0,2,2],
-        [0,0,0,0,0,2,2,2],
-        [0,0,0,0,0,0,0,0]
+        [0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,1,1,1],
+		[0,0,0,0,0,1,1,1],
+		[0,0,0,0,0,0,5,5],
+		[0,0,0,0,0,0,2,2],
+		[0,0,0,0,0,2,2,2]
     ],
     "shape": [8,8],
     "sum": 26,
-    "size": 2,
+    "size": 13,
     "pixels": [
-	    ...
+        ...
         {
             "color": 1,
-            "coord": [
-                3,
-                5
-            ]
+            "coord": [3,5]
         },
         {
             "color": 1,
-            "coord": [
-                3,
-                6
-            ]
+            "coord": [3,6]
         },
         {
             "color": 1,
-            "coord": [
-                3,
-                7
-            ]
+            "coord": [3,7]
         },
-		...
+        ...
         {
             "color": 1,
-            "coord": [
-                4,
-                5
-            ]
+            "coord": [4,5]
         },
         {
             "color": 1,
-            "coord": [
-                4,
-                6
-            ]
+            "coord": [4,6]
         },
         {
             "color": 1,
-            "coord": [
-                4,
-                7
-            ]
+            "coord": [4,7]
         },
-		...
+        ...
         {
             "color": 5,
-            "coord": [
-                5,
-                6
-            ]
+            "coord": [5,6]
         },
         {
             "color": 5,
-            "coord": [
-                5,
-                7
-            ]
+            "coord": [5,7]
         },
-		...
+        ...
         {
             "color": 2,
-            "coord": [
-                6,
-                6
-            ]
+            "coord": [6,6]
         },
         {
             "color": 2,
-            "coord": [
-                6,
-                7
-            ]
+            "coord": [6,7]
         },
-		...
+        ...
         {
             "color": 2,
-            "coord": [
-                7,
-                5
-            ]
+            "coord": [7,5]
         },
         {
             "color": 2,
-            "coord": [
-                7,
-                6
-            ]
+            "coord": [7,6]
         },
         {
             "color": 2,
-            "coord": [
-                7,
-                7
-            ]
+            "coord": [7,7]
         }
     ],
     "colors": [0,1,2,5],
-    "objects": null
+    "objects": [
+        {
+            "raw": [
+                [1.0,1.0,1.0],
+                [1.0,1.0,1.0]
+            ],
+            "shape": [2,3],
+            "sum": 6.0,
+            "size": 6,
+            "pixels": [
+                {
+                    "color": 1,
+                    "coord": [3,5]
+                },
+                {
+                    "color": 1,
+                    "coord": [3,6]
+                },
+                {
+                    "color": 1,
+                    "coord": [3,7]
+                },
+                {
+                    "color": 1,
+                    "coord": [4,5]
+                },
+                {
+                    "color": 1,
+                    "coord": [4,6]
+                },
+                {
+                    "color": 1,
+                    "coord": [4,7]
+                }
+            ],
+            "colors": [1.0],
+            "objects": null
+        },
+        {
+            "raw": [
+                [5.0,5.0]
+            ],
+            "shape": [1,2],
+            "sum": 10.0,
+            "size": 2,
+            "pixels": [
+                {
+                    "color": 5,
+                    "coord": [5,6]
+                },
+                {
+                    "color": 5,
+                    "coord": [5,7]
+                }
+            ],
+            "colors": [5.0],
+            "objects": null
+        },
+        {
+            "raw": [
+                [0.0,2.0,2.0],
+                [2.0,2.0,2.0]
+            ],
+            "shape": [2,3],
+            "sum": 10.0,
+            "size": 5,
+            "pixels": [
+                {
+                    "color": 2,
+                    "coord": [6,6]
+                },
+                {
+                    "color": 2,
+                    "coord": [6,7]
+                },
+                {
+                    "color": 2,
+                    "coord": [7,5]
+                },
+                {
+                    "color": 2,
+                    "coord": [7,6]
+                },
+                {
+                    "color": 2,
+                    "coord": [7,7]
+                }
+            ],
+            "colors": [0.0,2.0],
+            "objects": null
+        }
+    ]
 }
 ```
 
