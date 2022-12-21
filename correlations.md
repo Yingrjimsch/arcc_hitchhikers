@@ -472,8 +472,7 @@ With these two grids the `correlation` function can be called. Which needs to co
         {
             "color": 2,
             "coord": ?
-        },
-        ...
+        }
     ],
     "colors": [0,1,2,5],
     "objects": [
