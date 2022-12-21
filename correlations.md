@@ -400,6 +400,164 @@ With these two grids the `correlation` function can be called. Which needs to co
  [0 0 0 0 0 2 2 2]]` | ... pixels have been moved, the number 4 is interesting ...
  
  The other generated value will be a `Grid` object, which is an abstracton of the compared Grids as follows:
- 
- //TODO will be added after generation
- 
+ ```json
+ {
+    "raw": [
+        [0,0,0,0,0,0,0,0],
+        [0,0,1,1,1,0,0,0],
+        [0,0,1,1,1,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,5,5,0,0,0,0],
+        [0,0,0,0,0,1,1,0],
+        [0,0,0,0,2,2,2,0],
+        [0,0,0,0,0,0,0,0]
+    ],
+    "shape": [8,8],
+    "sum": ?,
+    "size": 13,
+    "pixels": [
+        ...
+        {
+            "color": 1,
+            "coord": ?
+        },
+        {
+            "color": 1,
+            "coord": ?
+        },
+        {
+            "color": 1,
+            "coord": ?
+        },
+		...
+        {
+            "color": 1,
+            "coord": ?
+        },
+        {
+            "color": 1,
+            "coord": ?
+        },
+        {
+            "color": 1,
+            "coord": ?
+        },
+        ...
+        {
+            "color": 5,
+            "coord": ?
+        },
+        {
+            "color": 5,
+            "coord": ?
+        },
+        ...
+        {
+            "color": ?,
+            "coord": ?
+        },
+        {
+            "color": ?,
+            "coord": ?
+        },
+		...
+        {
+            "color": 2,
+            "coord": ?
+        },
+        {
+            "color": 2,
+            "coord": ?
+        },
+        {
+            "color": 2,
+            "coord": ?
+        },
+        ...
+    ],
+    "colors": [0,1,2,5],
+    "objects": [
+        {
+            "raw": [
+                [1.0,1.0,1.0],
+                [1.0,1.0,1.0]
+            ],
+            "shape": [2,3],
+            "sum": 6.0,
+            "size": 6,
+            "pixels": [
+                {
+                    "color": 1,
+                    "coord": ?
+                },
+                {
+                    "color": 1,
+                    "coord": ?
+                },
+                {
+                    "color": 1,
+                    "coord": ?
+                },
+                {
+                    "color": 1,
+                    "coord": ?
+                },
+                {
+                    "color": 1,
+                    "coord": ?
+                },
+                {
+                    "color": 1,
+                    "coord": ?
+                }
+            ],
+            "colors": [1.0],
+            "objects": null
+        },
+        {
+            "raw": [
+                [5.0,5.0]
+            ],
+            "shape": [1,2],
+            "sum": 10.0,
+            "size": 2,
+            "pixels": [
+                {
+                    "color": 5,
+                    "coord": ?
+                },
+                {
+                    "color": 5,
+                    "coord": ?
+                }
+            ],
+            "colors": [5.0],
+            "objects": null
+        },
+        {
+            "raw": [
+                [2.0,2.0,2.0]
+            ],
+            "shape": ?,
+            "sum": ?,
+            "size": ?,
+            "pixels": [
+                {
+                    "color": 2,
+                    "coord": ?
+                },
+                {
+                    "color": 2,
+                    "coord": ?
+                },
+                {
+                    "color": 2,
+                    "coord": ?
+                }
+            ],
+            "colors": ?,
+            "objects": null
+        }
+    ]
+}
+ ```
