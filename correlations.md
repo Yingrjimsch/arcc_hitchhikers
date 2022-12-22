@@ -8,7 +8,9 @@ To get the best possible result the goal is to find as many correlations as poss
 
 ## Example
 As an example, the following input, output data are provided:
-//TODO Image
+
+![Correlation Example](correlation_example.png)
+
 These two two-dimensional arrays are mapped into grids and look like this after preprocessing:
 //TODO new grids with objects per color
 <table style="width: 100%">
