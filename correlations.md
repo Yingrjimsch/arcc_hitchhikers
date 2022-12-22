@@ -390,7 +390,9 @@ With these two grids the `correlation` function can be called. Which needs to co
 * `sameSize = true` | ... no added pixels, removed pixels, duplicating ...
 * `sameColor = true` | ... no added colors, recoloring of existing things ...
 * `colorDiff = []` | same as `sameColor`in this case ...
-* `sameObjects = []` //TODO: hier ergänzen mit Objects per color
+* `sameObjects = [[[1,1,1],[1,1,1]],[[5,5]]]` | //TODO: WIP --> objects which are 100% the same
+* `similarObjects = []` | //TODO: WIP --> objects which are similar by percentage
+* `differentObjects` | //TODO: WIP --> objects which are not similar with anything at all
 * `diff = [
  [0 0 0 0 0 0 0 0]
  [0 0 1 1 1 0 0 0]
