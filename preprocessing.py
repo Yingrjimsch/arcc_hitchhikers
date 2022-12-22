@@ -101,5 +101,5 @@ Return value ist eine 2D array von input output Grid Objects
  [Grid_Input_2, Grid_Output_2],
   [Grid_Input_3, Grid_Output_3]]
 """
-def preprocess(matrices):
-    return
+def preprocess(task):
+    return [[Grid(io_tuple[0]), Grid(io_tuple[1])] for io_tuple in task]
