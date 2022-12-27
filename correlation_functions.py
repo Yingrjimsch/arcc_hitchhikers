@@ -1,5 +1,9 @@
+import math
+
 import numpy as np
 import collections
+
+from preprocessing import Pixel, Grid
 
 FILENAME = 'correlation_functions'
 
@@ -49,7 +53,7 @@ def check_same_color_sum(matrix_one, matrix_two):
 
 def same_shape_diff(grid_one, grid_two):
     return abs(np.asarray(grid_one) - np.asarray(grid_two))
-    
+
 
 def get_pixel_neighbours_recursive(matrix, pixel, seen_pos):
     if matrix[pixel[0], pixel[1]] == 0:
@@ -83,7 +87,7 @@ def normalize(pixels):
     x = max(list(map(Pixel.getX, pixels))) - min(list(map(Pixel.getX, pixels)))
     y = max(list(map(Pixel.getY, pixels))) - min(list(map(Pixel.getY, pixels)))
     raw = np.zeros((x + 1,y + 1))
-    
+
     for p in pixels:
         raw[(p.getX() - min(list(map(Pixel.getX, pixels))), p.getY() - min(list(map(Pixel.getY, pixels))))] = p.color
     return raw
@@ -93,7 +97,36 @@ def normalize(pixels):
 """
 Vergleicht die Grid Objekte auf ihre properties
 Returnt ein Grid Objekt mit allen korrelationen
-(dinge die nicht gleich sind können mit einem Placeholder ausgefüllt werden) 
+(dinge die nicht gleich sind werden mit einem Placeholder '?' ausgefüllt) 
 """
-def correlate(m1, m2):
-    return
+def correlate(preprocessed_task):
+    correlations = []
+    # Create List of correlations between each input and output
+    for i in range(len(preprocessed_task)):
+        corr = Correlation(preprocessed_task[i][0], preprocessed_task[i][1])
+        correlations.append(corr)
+
+
+
+    return correlations
+
+
+class Correlation:
+    def __init__(self, grid1: Grid, grid2: Grid):
+        self.grid1 = grid1
+        self.grid2 = grid2
+        self.sameShape = grid1.shape == grid2.shape
+        self.sameColorCount = self.colorCount(grid1) == self.colorCount(grid2)
+        self.sameSize = grid1.size == grid2.size
+        self.sameColors = grid1.colors == grid2.colors
+        colorDiffPrep = self.colorCount(grid1)
+        colorDiffPrep.subtract(self.colorCount(grid2))
+        self.colorDiff = colorDiffPrep
+
+    """Counter of """
+    def colorCount(self, grid: Grid):
+        pixels = grid.getPixels()
+        counter = collections.Counter()
+        for pixel in pixels:
+            counter[f'{pixel.color}'] += 1
+        return counter
