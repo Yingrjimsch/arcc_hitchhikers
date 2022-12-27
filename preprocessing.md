@@ -1,5 +1,7 @@
 # ARC - Preprocessing 
 This, very important, part is performed for each ARC task in order to extract as much information as possible. The more information that can be collected and combined, the easier it will be to identify patterns, repetitions and ultimately task logics.
+
+
 ![Data Extraction](https://media.tenor.com/QfgUqeUeB6kAAAAM/monsieur-propre-mr-propre.gif)
 
 
