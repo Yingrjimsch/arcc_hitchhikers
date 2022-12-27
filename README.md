@@ -1,15 +1,3 @@
-<script defer src="https://pyscript.net/latest/pyscript.js"></script>
-
-<div>
-<py-repl output="out">
-import random
-names = ["vonwareb", "42oli", "ma99koch", "yingrjimsch", "tobi"]
-random.choice(names)
-</py-repl>
-</div>
-
-<div><pre id="out"></pre></div>
-
 #  ARC Challenge Team Hitchhikers
 ##  Implementation Guidelines
 In this section we describe what our implementation guidelines are. They are kept as simple as possible so that everyone does the implementation process in the same way.
