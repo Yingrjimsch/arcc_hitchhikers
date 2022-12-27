@@ -13,7 +13,7 @@ As an example, the following input, output data are provided:
 
 These two two-dimensional arrays are mapped into grids and look like this after preprocessing:
 //TODO new grids with objects per color
-<table style="width: 100%">
+<table style="width: 100%; display: table">
 <tr>
 <th>Input</th>
 <th>Output</th>
