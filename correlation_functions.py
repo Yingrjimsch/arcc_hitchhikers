@@ -8,24 +8,24 @@ from preprocessing import Pixel, Grid
 FILENAME = 'correlation_functions'
 
 """find and return the a grid of neighbouring pixels with selected pixel in center"""
-def get_pixel_neighbours(matrix, pixel):
-    neighbours = np.zeros((3,3))
-    for i in range(3):
-        for j in range(3):
-            neighbours[i, j] = matrix[pixel[0]-1+i, pixel[1]-1+j]
-    return neighbours
+# def get_pixel_neighbours(matrix, pixel):
+#     neighbours = np.zeros((3,3))
+#     for i in range(3):
+#         for j in range(3):
+#             neighbours[i, j] = matrix[pixel[0]-1+i, pixel[1]-1+j]
+#     return neighbours
 
-def equal_matrix_dimensions(matrix_one, matrix_two):
-    """
-    Checks if dimensions of input matrix and output matrix are equal
-    :param array_one:
-    :param array_two:
-    :return: boolean
-    """
-
-    matrix_one_new = np.asarray(matrix_one)
-    matrix_two_new = np.asarray(matrix_two)
-    return matrix_one_new.shape == matrix_two_new.shape
+# def equal_matrix_dimensions(matrix_one, matrix_two):
+#     """
+#     Checks if dimensions of input matrix and output matrix are equal
+#     :param array_one:
+#     :param array_two:
+#     :return: boolean
+#     """
+#
+#     matrix_one_new = np.asarray(matrix_one)
+#     matrix_two_new = np.asarray(matrix_two)
+#     return matrix_one_new.shape == matrix_two_new.shape
 
 def check_same_color_sum(matrix_one, matrix_two):
     """
@@ -97,7 +97,7 @@ def normalize(pixels):
 """
 Vergleicht die Grid Objekte auf ihre properties
 Returnt ein Grid Objekt mit allen korrelationen
-(dinge die nicht gleich sind werden mit einem Placeholder '?' ausgefüllt) 
+(dinge die nicht gleich sind werden mit einem Placeholder 'NaN' ausgefüllt) 
 """
 def correlate(preprocessed_task):
     correlations = []
@@ -105,9 +105,6 @@ def correlate(preprocessed_task):
     for i in range(len(preprocessed_task)):
         corr = Correlation(preprocessed_task[i][0], preprocessed_task[i][1])
         correlations.append(corr)
-
-
-
     return correlations
 
 
@@ -116,17 +113,79 @@ class Correlation:
         self.grid1 = grid1
         self.grid2 = grid2
         self.sameShape = grid1.shape == grid2.shape
-        self.sameColorCount = self.colorCount(grid1) == self.colorCount(grid2)
+        self.sameColorCount = self.color_count(grid1) == self.color_count(grid2)
         self.sameSize = grid1.size == grid2.size
-        self.sameColors = grid1.colors == grid2.colors
-        colorDiffPrep = self.colorCount(grid1)
-        colorDiffPrep.subtract(self.colorCount(grid2))
-        self.colorDiff = colorDiffPrep
+        self.sameColors = np.all(grid1.colors == grid2.colors)
+        color_diff_prep = self.color_count(grid1)
+        color_diff_prep.subtract(self.color_count(grid2))
+        self.colorDiff = color_diff_prep
+        self.sameObjectsIdpPosFixCol = self._get_same_objects_idp_pos_fix_col()
+        self.sameObjectsFixPosFixCol = self._get_same_objects_fix_pos_fix_col()
+        self.sameObjectsFixPosIdpCol = self._get_same_objects_fix_pos_idp_col()
+        self.sameObjectsIdpPosIdpCol = self._get_same_objects_idp_pos_idp_col()
+        self.diff = grid1.raw - grid2.raw
 
-    """Counter of """
-    def colorCount(self, grid: Grid):
+    """Counter of different colors"""
+    def color_count(self, grid: Grid):
         pixels = grid.getPixels()
         counter = collections.Counter()
         for pixel in pixels:
-            counter[f'{pixel.color}'] += 1
+            counter[pixel.color] += 1
         return counter
+
+    def _get_same_objects_idp_pos_fix_col(self):
+        objects1 = self.grid1.objects
+        objects2 = self.grid2.objects
+        same = []
+
+        for o1 in objects1:
+            for o2 in objects2:
+                if np.array_equal(o1.raw, o2.raw):
+                    same.append(o1)
+                    break
+        return same
+
+    def _get_same_objects_fix_pos_fix_col(self):
+        objects1 = self.grid1.objects
+        objects2 = self.grid2.objects
+        same = []
+
+        for o1 in objects1:
+            for o2 in objects2:
+                if np.array_equal(o1.raw, o2.raw):
+                    is_same = True
+                    for i, pixel in enumerate(o1.pixels):
+                        if not np.array_equal(pixel.coord, o2.pixels[i].coord):
+                            is_same = False
+                    if is_same:
+                        same.append(o1)
+        return same
+
+    def _get_same_objects_fix_pos_idp_col(self):
+        objects1 = self.grid1.objects
+        objects2 = self.grid2.objects
+        same = []
+
+        for o1 in objects1:
+            for o2 in objects2:
+                if o1.raw.shape == o2.raw.shape:
+                    same_pos = True
+                    for i, pixel in enumerate(o1.pixels):
+                        if not np.array_equal(pixel.coord, o2.pixels[i].coord):
+                            same_pos = False
+                    if same_pos:
+                        same.append(o1)
+        return same
+
+    def _get_same_objects_idp_pos_idp_col(self):
+        objects1 = self.grid1.objects
+        objects2 = self.grid2.objects
+        same = []
+
+        for o1 in objects1:
+            for o2 in objects2:
+                if o1.raw.shape == o2.raw.shape:
+                    same.append(o1)
+                    break
+
+        return same
