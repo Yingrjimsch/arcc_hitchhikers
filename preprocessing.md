@@ -2,7 +2,9 @@
 This, very important, part is performed for each ARC task in order to extract as much information as possible. The more information that can be collected and combined, the easier it will be to identify patterns, repetitions and ultimately task logics.
 
 
-![Data Extraction](https://media.tenor.com/QfgUqeUeB6kAAAAM/monsieur-propre-mr-propre.gif)
+<p align="center">
+  <img src="https://media.tenor.com/QfgUqeUeB6kAAAAM/monsieur-propre-mr-propre.gif" />
+</p>
 
 
 Most of the Tasks from the ARC Dataset consist of around three examples and one task with an unknown output. Every example task consists of a two dimensional array with inputs (numbers 0-9) and a two dimensional array with outputs (also numbers 0-9)
