@@ -32,4 +32,7 @@ It is achieved by clustering all numbers by color and neighbours with help of sk
    /  |  \    
 [ ]  [ ]  [ ]
 ```
+
+### Pattern Recognition
+Not all exercises have something to do with objectness. Most of the other exercises which are not related to objectness have a color pattern which needs to be somehow predicted. Therefore the idea is to use sliding window technique to find repeated patterns. This can also be used to detect a subgrid's position in a parentgrid.
 [^1]: https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.label
