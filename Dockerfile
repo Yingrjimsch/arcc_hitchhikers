@@ -6,4 +6,4 @@ ADD * .
 RUN pip install numpy
 RUN pip install matplotlib
 
-CMD ["python", "./main.py"]
+CMD ["python", "./Main.py"]

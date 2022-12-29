@@ -1,29 +1,116 @@
+import json
+import os
 import numpy as np
-import correlation_functions as cf
-import helper as hlp
-
-import numpy as np
-BORDER_VALUE = -1
-class Pixel:
-    def __init__(self, color, coord):
-        self.color = color
-        self.coord = coord
-        
-class Grid:
-    def __init__(self, raw_grid):
-        self.raw = raw_grid
-        self.shape = raw_grid.shape
-        self.sum = np.sum(raw_grid)
-        self.size = len(np.nonzero(raw_grid!=BORDER_VALUE))
-        self.pixels = [Pixel(color, i) for i,color in enumerate(raw_grid.flatten())]
-        self.colors = np.unique(raw_grid)
-        self.objects = []
-        self.patterns = []
-        
-pixel = Pixel(1, [1,2])
-pixel2 = Pixel(1, [1,2])
-grid = np.asarray([[1, 2, 1], [2, 2, 2], [3, 1, 1]])
-g = Grid(grid)
 
 
+# Define function to read tasks
+def load_tasks(path):
+    """
+    Function to load .json files of tasks
+    :param path: Path to folder where tasks are stored
+    :return: - training and test tasks separated into a list of dictionaries
+                    where each entry is of the type {'input': [.task.], 'output': [.task.]}
+             - list of file names
+    """
+    # Load Tasks
+    # Path to tasks
+    tasks_path = path
+    tasks_count = len(os.listdir(tasks_path))
+    # Initialize list to store file names of tasks
+    tasks_file_names = list(np.zeros(tasks_count))
+    # Initialize lists of lists of dictionaries to store training and test tasks
+    # Format of items will be [{'input': array,'output': array},...,{'input': array,'output': array}]
+    train_tasks = list(np.zeros(tasks_count))
+    test_tasks = list(np.zeros(tasks_count))
 
+    # Read in tasks and store them in lists initialized above
+    for i, file in enumerate(os.listdir(tasks_path)):
+        with open(tasks_path + file, 'r') as f:
+            task = json.load(f)
+            tasks_file_names[i] = file
+            train_tasks[i] = []
+            test_tasks[i] = []
+
+            for t in task['train']:
+                train_tasks[i].append(t)
+            for t in task['test']:
+                test_tasks[i].append(t)
+
+    return train_tasks, test_tasks, tasks_file_names
+
+# entry point
+# TODO: initialize
+# train model, import pre-trained parameters, ...
+
+
+# Read in evaluation tasks
+training_tasks, testing_tasks, file_names = load_tasks('data/evaluation/')
+# Get number of test tasks for outputting progress later and define counter.
+num_test_tasks = len(testing_tasks)
+counter = 0
+# Do some stuff to generate solution
+# Allocate space for overall solution
+solution = []
+# Iterate over all tasks to generate solution
+for test_task, task_filename in zip(testing_tasks, file_names):
+    # Allocate space for solutions of task examples
+    test = []
+    # Store filename
+    task_name = task_filename.strip('.json')
+    # Iterate over test examples (1 or 2)
+    for id_example, example in enumerate(test_task):
+        # Get input of example
+        example_input = example['input']
+        # Allocate space for predictiction objects
+        predictions = []
+        # TODO: generate predictions as shown in following commented code:
+
+#                   # Do some random stuff to generate outputs
+#                   # Do some stuff to generate output
+#                   # Get maximal value of input
+#                   input_max = np.amax(example_input)
+#                   # Random grid sizes
+#                   random_grid_sizes = np.random.randint(1, 5, size=(3, 2))
+#                   # Make predictions taking random grid sizes and filling the resulting arrays with color found above
+#                   for prediction_id, grid_size in enumerate(random_grid_sizes):
+#                       # Generate output prediction and change it to a list to create json file later
+#                       output = np.full(grid_size, input_max, dtype=np.uint8).tolist()
+#                       object_prediction = {'prediction_id': prediction_id, 'output': output}
+#                       predictions.append(object_prediction)
+
+        # Generate object solution containing all predictions
+        object_solution = {'output_id': id_example, 'number_of_predictions': len(predictions),
+                           'predictions': predictions}
+        # Add solution of example to list of solutions
+        test.append(object_solution)
+
+    # solution to single task looks like this:
+    # {"task_name": "00576224",
+    #    "test": [{"output_id": 0,
+    #                "number_of_predictions": 3,
+    #                "predictions": [
+    #                       {"prediction_id": 0, "output": [[8, 8], [8, 8]]},
+    #                       {"prediction_id": 1, "output": [[8]]},
+    #                       {"prediction_id": 2, "output": [[8]]}
+    #                      ]
+    #              }]
+    # }
+
+    # the file to be handed in is a json-list of such solutions like:
+    # [{"task_name": ...... }, {"task_name": .... }]
+    # Add solution of examples to overall solution
+    object_task = {'task_name': task_name, 'test': test}
+    solution.append(object_task)
+    # Output progress
+    counter += 1
+    if counter % 50 == 0:
+        print('Generated solution for {} of {} test examples'.format(counter, num_test_tasks))
+
+
+# Store solution to json file named solution_teamid where our teamid is hitchhikers
+# Store it in solution folder which is mounted
+solution_json = json.dumps(solution)
+with open('../data/solution/solution_hitchhikers.json', 'w') as outfile:
+    outfile.write(solution_json)
+# Print that program has finished
+print("Program has finished!")
