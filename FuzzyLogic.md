@@ -1,5 +1,5 @@
 # ARC - FuzzyLogic
-## Why FuttyLogic?
+## Why FuzzyLogic?
 TODO// Why we decided to use FuzzyLogic?
 
 ## How do we use our preprocessing and our obtained correlations in FuzzyLogic?
