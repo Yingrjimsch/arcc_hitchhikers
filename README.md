@@ -7,6 +7,8 @@ So we, Matthias Koch, Gabriel Nobel, Rebekka von Wartburg, Tobias Wehrli and Oli
 This was followed by a time in which we dealt intensively with the ARC problems, solved many of these problems ourselves and analyzed them.
 From this we came up with different ideas how to approach the task of finding a "solution" to the abstract reasoning challenge.
 
+In the end it was fun to work on the challenge and even if we didn't manage to achieve everything we have some satisfying [results and conclusions](results_conclusions.md).
+
 
 ##  Implementation Guidelines
 In this section we describe what our implementation guidelines are. They are kept as simple as possible so that everyone does the implementation process in the same way.
