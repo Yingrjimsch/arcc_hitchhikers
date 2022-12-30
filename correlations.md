@@ -384,28 +384,35 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 As a human can see pretty fast one part of the logic behind the input / output is it to move all the colored pixels to the bottom right corner. Another (not that clear) logic is to color all pixels below the gray line with one color and those above it with another color. In this case red and blue.
 
 With these two grids the `correlation` function can be called. Which needs to compare both of these grids and get correlations as follows:
-//TODO: matthias maybe you find more correlations we can use
+
+### Correlation attributes
+
 * `sameShape = true` | ... no zooming, scaling, cropping happened ...
 * `sameColorCount = false` | ... some kind of color swapping ...
 * `sameSize = true` | ... no added pixels, removed pixels, duplicating (same amount non-background pixels)...
 * `sameColor = true` | ... no added colors, recoloring of existing things ...
-* `colorDiff = {0: x, 1: y}` | same as `sameColor`in this case ...
+* `colorDiff = {1: 2, 0: 0, 2: -2}` | same as `sameColor`in this case ...
 * `sameObjectsIdpPosIdpCol = [[[1,1,1],[1,1,1]],[[5,5]]]` | objects which are the same but are independent by position and color
 * `sameObjectsIdpPosFixCol = [[[1,1,1],[1,1,1]],[[5,5]]]` | objects which are the same but are independent by position (same color)
 * `sameObjectsFixPosIdpCol = []` | objects which are the same but are independent by color (same position)
 * `sameObjectsFixPosFixCol = []` | objects which are the same (so they are fixed in position and color, e.g. walls)
+* `diff = [`<br>
+ `[0 0 0 0 0 0 0 0]`<br>
+ `[0 0 1 1 1 0 0 0]`<br>
+ `[0 0 1 1 1 0 0 0]`<br>
+ `[0 0 0 0 0 1 1 1]`<br>
+ `[0 0 5 5 0 1 1 1]`<br>
+ `[0 0 0 0 0 1 4 5]`<br>
+ `[0 0 0 0 2 2 0 2]`<br>
+ `[0 0 0 0 0 2 2 2]]` | ... pixels have been moved, the number 4 is interesting ... (This method will not work with with different shapes of input and output due to time-capacity)
+
+### Additional Ideas of attributes
+Due to our restricted time-capacity, we were only able to implement a few correlations.
+Between these grids, there is a vast amount of possibilities, to get some other correlations.
+Some ideas are listed below:
+
 * `similarObjects = []` | //TODO: WIP --> objects which are similar by percentage
 * `differentObjects` | //TODO: WIP --> objects which are not similar with anything at all
-* `diff = [
- [0 0 0 0 0 0 0 0]
- [0 0 1 1 1 0 0 0]
- [0 0 1 1 1 0 0 0]
- [0 0 0 0 0 1 1 1]
- [0 0 5 5 0 1 1 1]
- [0 0 0 0 0 1 4 5]
- [0 0 0 0 2 2 0 2]
- [0 0 0 0 0 2 2 2]]` | //TODO: error if not same shape! ... pixels have been moved, the number 4 is interesting ...
- 
  The other generated value will be a `Grid` object, which is an abstracton of the compared Grids as follows:
  ```json
  {
