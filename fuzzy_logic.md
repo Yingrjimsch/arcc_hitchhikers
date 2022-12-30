@@ -26,7 +26,7 @@ For that, our model will take one input-grid and the corresponding output-grid, 
 To define a rule-set, it is necessary to know what should be the input and output of the rule.
 A  rule can look something like this:
 
-If (`variable_1` is `about value`) and (`variable_2` is `very high`) [and... ]* then `output` is `action`.
+* If (`variable_1` is `about value`) and (`variable_2` is `very high`) [and... ]* then `output` is `action`.
 
 Our `variables` are defined in the [correlations](correlations.md#correlation-attributes), which are simply the different attributes of a correlation-object.
 
