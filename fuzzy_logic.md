@@ -1,7 +1,7 @@
 # ARC - Fuzzy logic
 ## Why fuzzy logic?
 
-Fuzzy logic promises many similarities to a neural (NN) network. As we were thinking about using a NN anyway, we took a closer
+Fuzzy logic promises many similarities to a neural network (NN). As we were thinking about using a NN anyway, we took a closer
 look at fuzzy logic. One advantage of using fuzzy logic in comparison to a NN would be the comprehensibility of the process.
 This would allow us to understand and debug our solution.
 Even though the goal of the ARC-Challenge would be to get rid of the human thought process, it would not be possible in our opinion.
