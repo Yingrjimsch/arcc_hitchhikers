@@ -3,16 +3,17 @@ In this section it is briefly explained which correlations exist, how they are o
 
 To get the best possible result the goal is to find as many correlations as possible. Because of that the Grids should be compared with each other as follows
 1. X number of input and X number of output grids are generated from preprocessing and are given as parameters to the `correlate` function.
-2. every input is compared with it's specific output and all other inputs
-3. for every comparison a **correlation object** and a **grid object** should be returned.
+2. every input is compared with its specific output.
+3. for every comparison a **correlation object** will be returned.
+4. (Future steps could be to also correlate input/input and output/output)
 
 ## Example
 As an example, the following input, output data are provided:
 
-![Correlation Example](correlation_example.png)
+![Correlation Example](img/correlation_example1.png)
 
 These two two-dimensional arrays are mapped into grids and look like this after preprocessing:
-//TODO new grids with objects per color
+
 <table style="width: 100%; display: table">
 <tr>
 <th>Input</th>
@@ -383,20 +384,20 @@ These two two-dimensional arrays are mapped into grids and look like this after 
 
 As a human can see pretty fast one part of the logic behind the input / output is it to move all the colored pixels to the bottom right corner. Another (not that clear) logic is to color all pixels below the gray line with one color and those above it with another color. In this case red and blue.
 
-With these two grids the `correlation` function can be called. Which needs to compare both of these grids and get correlations as follows:
+With these two grids, the `correlate` function can be called, which needs to compare both of these grids and returns a correlation object with following attributes:
 
 ### Correlation attributes
 
-* `sameShape = true` | ... no zooming, scaling, cropping happened ...
-* `sameColorCount = false` | ... some kind of color swapping ...
-* `sameSize = true` | ... no added pixels, removed pixels, duplicating (same amount non-background pixels)...
-* `sameColor = true` | ... no added colors, recoloring of existing things ...
-* `colorDiff = {1: 2, 0: 0, 2: -2}` | same as `sameColor`in this case ...
-* `sameObjectsIdpPosIdpCol = [[[1,1,1],[1,1,1]],[[5,5]]]` | objects which are the same but are independent by position and color
-* `sameObjectsIdpPosFixCol = [[[1,1,1],[1,1,1]],[[5,5]]]` | objects which are the same but are independent by position (same color)
-* `sameObjectsFixPosIdpCol = []` | objects which are the same but are independent by color (same position)
-* `sameObjectsFixPosFixCol = []` | objects which are the same (so they are fixed in position and color, e.g. walls)
-* `diff = [`<br>
+- `sameShape = true` | *No zooming, scaling, cropping happened*
+- `sameColorCount = false` | *Some kind of color swapping*
+- `sameSize = true` | *No added pixels, removed pixels, duplicating (same amount non-background pixels)*
+- `sameColor = true` | *No added colors, recoloring of existing things*
+- `colorDiff = {1: 2, 0: 0, 2: -2}` | *same as `sameColor`in this case*
+- `sameObjectsIdpPosIdpCol = [[[1,1,1],[1,1,1]],[[5,5]]]` | *Objects which are the same but are independent by position and color*
+- `sameObjectsIdpPosFixCol = [[[1,1,1],[1,1,1]],[[5,5]]]` | *Objects which are the same but are independent by position (same color)*
+- `sameObjectsFixPosIdpCol = []` | *objects which are the same but are independent by color (same position)*
+- `sameObjectsFixPosFixCol = []` | *objects which are the same (so they are fixed in position and color, e.g. walls)*
+- `diff = [`<br>
  `[0 0 0 0 0 0 0 0]`<br>
  `[0 0 1 1 1 0 0 0]`<br>
  `[0 0 1 1 1 0 0 0]`<br>
@@ -404,16 +405,20 @@ With these two grids the `correlation` function can be called. Which needs to co
  `[0 0 5 5 0 1 1 1]`<br>
  `[0 0 0 0 0 1 4 5]`<br>
  `[0 0 0 0 2 2 0 2]`<br>
- `[0 0 0 0 0 2 2 2]]` | ... pixels have been moved, the number 4 is interesting ... (This method will not work with with different shapes of input and output due to time-capacity)
+ `[0 0 0 0 0 2 2 2]]` | *Difference between first and second grid -> 0 means, the pixel keeps the color (This method will not work with different shapes of input and output due to time-capacity)*
 
-### Additional Ideas of attributes
+### Additional Ideas of Attributes
 Due to our restricted time-capacity, we were only able to implement a few correlations.
 Between these grids, there is a vast amount of possibilities, to get some other correlations.
 Some ideas are listed below:
 
-* `similarObjects = []` | //TODO: WIP --> objects which are similar by percentage
-* `differentObjects` | //TODO: WIP --> objects which are not similar with anything at all
- The other generated value will be a `Grid` object, which is an abstracton of the compared Grids as follows:
+* `similarObjects = []` | *Objects which are similar by percentage*
+* `differentObjects` | *Objects which are not similar with anything at all*
+* `scaleValueX` | *If the grids have not the same width, factor from first to second width*
+* `scaleValueY` | *If the grids have not the same height, factor from first to second height*
+
+#### The other generated value will be a `Grid` object, which is an abstracton of the compared Grids as follows:
+Values which are not plausible will ne represented as `NaN`.
  ```json
  {
     "raw": [
@@ -427,65 +432,65 @@ Some ideas are listed below:
         [0,0,0,0,0,0,0,0]
     ],
     "shape": [8,8],
-    "sum": ?,
+    "sum": NaN,
     "size": 13,
     "pixels": [
         ...
         {
             "color": 1,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 1,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 1,
-            "coord": ?
+            "coord": NaN
         },
 		...
         {
             "color": 1,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 1,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 1,
-            "coord": ?
+            "coord": NaN
         },
         ...
         {
             "color": 5,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 5,
-            "coord": ?
+            "coord": NaN
         },
         ...
         {
-            "color": ?,
-            "coord": ?
+            "color": NaN,
+            "coord": NaN
         },
         {
-            "color": ?,
-            "coord": ?
+            "color": NaN,
+            "coord": NaN
         },
 		...
         {
             "color": 2,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 2,
-            "coord": ?
+            "coord": NaN
         },
         {
             "color": 2,
-            "coord": ?
+            "coord": NaN
         }
     ],
     "colors": [0,1,2,5],
@@ -501,27 +506,27 @@ Some ideas are listed below:
             "pixels": [
                 {
                     "color": 1,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 1,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 1,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 1,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 1,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 1,
-                    "coord": ?
+                    "coord": NaN
                 }
             ],
             "colors": [1.0],
@@ -537,11 +542,11 @@ Some ideas are listed below:
             "pixels": [
                 {
                     "color": 5,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 5,
-                    "coord": ?
+                    "coord": NaN
                 }
             ],
             "colors": [5.0],
@@ -551,24 +556,24 @@ Some ideas are listed below:
             "raw": [
                 [2.0,2.0,2.0]
             ],
-            "shape": ?,
-            "sum": ?,
-            "size": ?,
+            "shape": NaN,
+            "sum": NaN,
+            "size": NaN,
             "pixels": [
                 {
                     "color": 2,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 2,
-                    "coord": ?
+                    "coord": NaN
                 },
                 {
                     "color": 2,
-                    "coord": ?
+                    "coord": NaN
                 }
             ],
-            "colors": ?,
+            "colors": NaN,
             "objects": null
         }
     ]
