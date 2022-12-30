@@ -5,7 +5,8 @@ To get the best possible result the goal is to find as many correlations as poss
 1. X number of input and X number of output grids are generated from preprocessing and are given as parameters to the `correlate` function.
 2. every input is compared with its specific output.
 3. for every comparison a **correlation object** will be returned.
-4. (Future steps could be to also correlate input/input and output/output)
+
+Future steps could be to also correlate input/input and output/output
 
 ## Example
 As an example, the following input, output data are provided:
@@ -407,7 +408,17 @@ With these two grids, the `correlate` function can be called, which needs to com
  `[0 0 0 0 2 2 0 2]`<br>
  `[0 0 0 0 0 2 2 2]]` | *Difference between first and second grid -> 0 means, the pixel keeps the color (This method will not work with different shapes of input and output due to time-capacity)*
 
-### Additional Ideas of Attributes
+## Usage of the Correlation Attributes
+To see what can be achieved by the correlation, the following *two examples* from the training-set of ARC are described in the [correlation notebook](correlation_testing.ipynb):
+
+a79310a0.json
+![Correlation example a79310a0.json](img/correlation_example2.png)
+
+05f2a901.json
+![Correlation example 05f2a901.json](img/correlation_example3.png)
+
+
+## Additional Ideas of Attributes
 Due to our restricted time-capacity, we were only able to implement a few correlations.
 Between these grids, there is a vast amount of possibilities, to get some other correlations.
 Some ideas are listed below:
