@@ -27,7 +27,7 @@ This means for example, the parameter colorDiff could be used to build different
 ## Our implementation/ implementation approaches of fuzzy logic
 To define a ruleset, it is necessary to know what should be the input and output of the rule.
 
-If variable is some value and `` then action.
+If (`variable_1` is `about value`) and (`variable_2` is `very high`) then `action`.
 
 ### ARC- Variables
 ### Define lingustic variables and terms 
