@@ -1,11 +1,11 @@
-#  ARC Challenge Team Hitchhikers
+#  ARCathon Team Hitchhikers
 ## Introduction
 
 A little more than three months ago, in the first lecture of the module "Artificial Intelligence", we were introduced to the ARC Challenge.
 Immediately we knew that this would be a very interesting and challenging work for each of us.
-So we, Matthias Koch, Gabriel Nobel, Rebekka von Wartburg, Tobias Wehrli and Oliver Wiedler, formed the team Hitchhikers and registered for the [ARC-Challenge](https://lab42.global/arcathon/).
+So we, Matthias Koch, Gabriel Nobel, Rebekka von Wartburg, Tobias Wehrli and Oliver Wiedler, formed the team Hitchhikers and registered for [ARC](https://lab42.global/arcathon/).
 This was followed by a time in which we dealt intensively with the ARC problems, solved many of these problems ourselves and analyzed them.
-From this we came up with different ideas how to approach the task of finding a "solution" to the ARC-Challenge.
+From this we came up with different ideas how to approach the task of finding a "solution" to the abstract reasoning challenge.
 
 
 ##  Implementation Guidelines
@@ -28,7 +28,9 @@ In this section we try to find a common vocabulary for our technical solution, s
  - A **Pixel** is one Square of an ARC Task Input and is described in more detail below.
  - A **Grid** is the whole Input of an ARC Task and contains multiple objects and pixels.
  - An **Object** is a "small" Grid, which represents a collection of pixels that have a dependency to each other.
- - A **Correlation** is a value that compares two grids, objects or pixels and tries to describe their similarity.
+ - A **[Correlation](correlations.md#correlation-attributes)** is a value that compares two grids, objects or pixels and tries to describe their similarity.
+
+More Details for **Pixel, Grid, Object** can be found in the [preprocessing](preprocessing.md).
 
 ###  Grid indicies
 
@@ -44,57 +46,12 @@ Pixels have to be accessed as normal array ( i.e. input for pixel (x,y)=[y,x])
 ###  How are boundaries handled
 
 All Datapoints outside of our grid should have the same value **-1**
- 
-###  Pixels
-A pixel defines one of the suqres in a grid. It has two values which are defined as follows:
-
-* color: *Number | Value of pixel between 0-9*
-
-* location: *Array | x and y coordinates in the grid [y,x]*
-
-###  Grid (WIP)
-A Grid is a two dimensional Array with shape *NxM* and it's values are defined as follows:
-
-* **shape**: ***Array** | N and M of Array where N is vertically and M is horizontally [N,M]*
-
-* **size**: ***Number** | sum of pixels in the Grid (NxM)*
-
-* **pixels**: ***Array** | collection of all pixels which the grid contains*
-
-* **colors**: ***Array** | all color values of the pixels array collected*
-
-* **square**: ***Boolean** | if array of shape NxN then 1 else 0*
-
-* **objects**: ***Array** | all clusters which can be found in the grid (objects)*
-
-* **patterns**: ***Array** | all color specific patterns which can be found in the grid*  
-  
-
-###  Correlations (WIP)
-
-To get the best possible result we want to find as many correlations as possible. Because of that we want to compare two Grids with each other. After comparing them with a `compare` function we will get a collection of information, we can use as correlation factors:
-
-* **sameShape**: ***Boolean** | do the grids have the same shape (grid1.shape - grid2.shape == 0?)*
-
-* **sameSize**: ***Boolean** | do the grids have the same size (grid1.size - grid2.size == 0?)*
-
-* **sameColors**: ***Boolean** | do the grids have the same colors in them?*
-
-* **colorDiff**: ***Array** | all colors which are in one but not in the other grod*
-
-* **sameObjects**: ***Array** | all objects which can be found in both grids (with scaling or transformation)*
-
-* **samePatterns**: ***Array** | all patterns which can be found in both grids (with scaling or transformation)*
-
-* **overlayPoint**: ***Pixel** | the point which is most likely to be the top left corner of the smaller grid in the larger grid*
-
-* **diff**: ***Grid** | a grid wich contains the difference between both (grid1 - grid2)*
 
 ##  Strategies
 
 In this section we try to define our overall strategy(s) which we try to think through and implement with the given time we have.
- 
-### Attempt Number One
+
+### Attempt Number One (deprecated)
 Our first thought was to create as much transformation functions like `rotate`, `flip` or `gravitate` and try to figure out a way for getting as fast as possible to our solution. In our mind we could "store" the used functions and reuse them on another known Input/Output set to  check if this is the right chaining of functions:
 ```mermaid
 graph TD
@@ -118,25 +75,25 @@ Secondly it was pretty obvious that a random selection of transformations leads 
 
 #### Objectness
 A human environment is full of objects which change or interact with each other. In our environment (the NxM Grid) we should be possible to detect objects, compare them and get conclusions for the final result out of them.
-##### Changing Objects (WIP)
+##### Changing Objects
 * Change Color
-* Change Position* 
+* Change Position
 * Rotate
 * Flip
 * Duplicate
 * Split
 * Extend
 * ...
-##### Interacting Objects (WIP)
+##### Interacting Objects
 * Bounce off
 * overlapp
 * Outline
 * Inline
 * ...
-#### Agentness (WIP)
+#### Agentness
 
-#### Numbers (WIP)
-* Compare / Subract Numbers
+#### Numbers
+* Compare / Subtract Numbers
 	* Size
 	* Number of different colors
 	* Number of pixel by color
@@ -144,23 +101,23 @@ A human environment is full of objects which change or interact with each other.
 	* Number of same patterns
 	* Dimension
 	* ...
-#### Geometry (WIP)
+#### Geometry
 * Distance
 * Scaling
 * Orientation
 * Object position
 * ...
 
-### Attempt Number Two
+### Attempt Number Two (current)
 With new insights and new experiences from coding different test methods, we have outlined a new strategy that we want to implement.
 
-#### Preprocessing
+#### Preprocessing ([here](preprocessing.md))
 In this step, grids, pixels and objects are processed in advance to find the greatest possible amount of information we can extract from a single Input. (see Definitions for more Detail)
 
-#### Structure Comparison
-Here, all possible input grids per task are compared with each other. The `compare` function is called which returns a correlation.
+#### Structure Comparison ([here](correlations.md))
+Here, all possible input grids per task are compared with each other and generate different correlations
 
-#### Structure Evaluation
+#### Structure Evaluation ([here](correlations.md##the-other-generated-value-will-be-a-grid-object-which-is-an-abstracton-of-the-compared-grids-as-follows))
 In the evaluation step, we will use the correlation we created in Structure Comparison to evaluate all different  correlations. We try to extract the correlations of the correlations (if this makes any sense) and build a Grid, which contains generic versions of Pixel and Objects. Examples for generic versions of these things are:
 * Pixel with [y,x] value set but a flexible color
 * Pixel with flexible y coordinate but fixed x coordinate or color
@@ -168,7 +125,7 @@ In the evaluation step, we will use the correlation we created in Structure Comp
 * ...
 
 #### Generic Evaluator
-these generic grids must then be compared with the output grids. If necessary, generic elements must be added or removed.
+These generic grids must then be compared with the output grids. If necessary, generic elements must be added or removed.
 
 #### Transformation
 
@@ -207,55 +164,55 @@ transformation --> voting[Voting]
 * `connect_horizontal_vertical`:
 * `connect_vertical_horizontal:`
 * `connect_diagonal`:
-* `find_objects`(not finished): returns a list with all objects of a grid
+* `find_objects`: returns a list with all objects of a grid
 
-# Different Approaches originally discussed
+## Different Approaches originally discussed
 
-## Per-Task Training
-One approach that was initially discussed was the possibility on training a model on each task instead of having one algorythm to solve all of them.
+### Per-Task Training
+One approach that was initially discussed was the possibility on training a model on each task instead of having one algorithm to solve all of them.
 
-### Idea prerequisites
+#### Idea prerequisites
 
 The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a mapping (function) between those inputs and outputs (depending on if each layer can be derivated, as far as I understood mathematically).
 
-#### Simple Task Examples
+##### Simple Task Examples
 
-Task1
+Task 1
 ||||
 |---|---|---|
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 0 | 0 | 0 |
 
-Solution1
+Solution 1
 ||||
 |---|---|---|
 | 0 | 1 | 0 |
 | 0 | 0 | 0 |
 | 0 | 0 | 0 |
 
-Task2
+Task 2
 ||||
 |---|---|---|
 | 0 | 0 | 0 |
 | 0 | 0 | 1 |
 | 0 | 0 | 0 |
 
-Solution2
+Solution 2
 ||||
 |---|---|---|
 | 0 | 0 | 1 |
 | 0 | 0 | 0 |
 | 0 | 0 | 0 |
 
-Task3
+Task 3
 ||||
 |---|---|---|
 | 0 | 0 | 0 |
 | 0 | 0 | 0 |
 | 1 | 0 | 0 |
 
-Solution3
+Solution 3
 ||||
 |---|---|---|
 | 0 | 0 | 0 |
@@ -288,7 +245,7 @@ Assumption 2: If we find the most general solution that can solve a set of probl
 
 We seem to need a way to be able to find out if this code is general or not.
 
-### Kernel thoughts with example
+#### Kernel thoughts with example
 
 A convoluted layer in a CNN has a kernel that modifies the input. With image stuff, this can be used to find edges. For our example here, using a kernel that looks like this:
 
@@ -300,7 +257,7 @@ A convoluted layer in a CNN has a kernel that modifies the input. With image stu
 would be able to solve the task above correctly in a single layer.
 
 
-### Functions to reduce complexity (Similar to our Fuzzy Logic)
+#### Functions to reduce complexity (Similar to our Fuzzy Logic)
 
 If you were to just try possible permutations on the input to get to the output, you would probably never arrive at a solution because there are too many permutations one can do.
 
