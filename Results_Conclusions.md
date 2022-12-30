@@ -15,4 +15,4 @@ TODO// Result of our solution variant with FuzzyLogic
 * <span style="color:red">-</span>
 * <span style="color:red">-</span>
 
-### What would we like to give to the group that has chosen the ARC Challenge as their bachelor thesis?
+### Our next steps
