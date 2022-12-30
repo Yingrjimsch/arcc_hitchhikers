@@ -1,37 +1,42 @@
 # ARC - Results and Conclusions
 The ARC Challenge accompanied us for 14 weeks. Many ideas were exchanged in brainstorming phases, many things were tried out.
-Even if we cannot present "THE" solution of the ARC Challenge in the end, we can still take a lot from this. (WIP)
+Even if we cannot present "THE" solution of the ARC Challenge in the end, we can still take many learnings from it.
 
 ## Results
-As it was already reported in [FuzzyLogic](FuzzyLogic.md) it turned out to be more difficult than expected to apply the Fuzzylogic to the ARC problems.
+As it was already reported in [fuzzy logic](fuzzy_logic.md) it turned out to be more difficult than expected to apply the fuzzy logic to the ARC problems.
 Possible reasons for this are:
-* ...
-* ...
-* ... (WIP)
+* It would be not a simple task to generate fuzzy logic rules automatically
+* To generate rules for each transformation is very costly and has to be done by hand
+* Static rules only apply on a small set of problems
+* Correlations as input values are not always sufficient
+* Not found a solution yet to set the correct order of the transformations (list of transformations instead of only one)
 
 ## Conclusions
-If we now look back over the past 14 weeks, we can look back on a time that was exciting,
-instructive but also a time marked by highs and lows. 
-Our enthusiasm and motivation to be able to develop a solution for ARC was questioned one or the other time during the course of the project.
-Again and again we had to realize
-that our ideas and solutions proved to be difficult to implement.
-Nevertheless, we remained confident until the end that we would be able to deliver a correct test. However, since the remaining time gave us a limit in the implementation phase,
-this could not be achieved. But nevertheless very important insights and experiences could be gained for us.
-
+To summarize the journey of tackling the abstract reasoning challenge there are multiple things to say.
+Not only the task by itself but also investing a lot of time, findig new and good ideas and working in the group was challenging.
+Even through we had a lot of fun working on it, the time was marked by highs and lows.
+Unfortunately we didn't manage to upload a finished version and reached our goal to complete one task, but we are pretty happy with the
+quality of what we have so far.
 
 ### Our positive experiences
-* <span style="color:green">+</span>
-* <span style="color:green">+</span>
-* <span style="color:green">+</span>
+* opportunity to be a part of a very interesting challenge
+* learning about fuzzy logic, python, AI- libraries
+* try to handle an unsolved task
+* insights in neuroscience (by talk of Prof. Dr. Benjamin Grewe and thoughts of Francois Chollet)
 
 ### Our drawbacks
-* <span style="color:red">-</span>
-* <span style="color:red">-</span>
-* <span style="color:red">-</span>
+* very time intensive semester (other subjects)
+* initial hurdle because of lack of experience
+* no consistent availability by all members
 
 ### Our next steps
-Since this year's ARC-Challenge is over and we unfortunately could not reach a complete solution
-(reasons for this were already mentioned under "Results") we would now like to show the next steps of the "Hitchhikers" in the ARC-Challenge.
-* ...
-* ...
-* ...
+Since this year's ARC-Challenge is over, and we unfortunately could not reach a complete solution
+(reasons for this were already mentioned under "Results"), here are some next possible steps:
+* **preprocessing**:
+  * collision- detection (object - object / object - boundary)
+* **correlations**:
+  * compare input with input and output with output
+  * adding more relevant attributes (see [more](correlations.md#additional-ideas-of-attributes))
+* **fuzzy logic**:
+  * implement basic ideas for evaluation
+* elaborate search algorithm for finding transformations
