@@ -119,7 +119,7 @@ In this step, grids, pixels and objects are processed in advance to find the gre
 #### Structure Comparison ([here](correlations.md))
 Here, all possible input grids per task are compared with each other and generate different correlations
 
-#### Structure Evaluation ([here](correlations.md##the-other-generated-value-will-be-a-grid-object-which-is-an-abstracton-of-the-compared-grids-as-follows))
+#### Structure Evaluation ([here](correlations.md#the-other-generated-value-will-be-a-grid-object-which-is-an-abstracton-of-the-compared-grids-as-follows))
 In the evaluation step, we will use the correlation we created in Structure Comparison to evaluate all different  correlations. We try to extract the correlations of the correlations (if this makes any sense) and build a Grid, which contains generic versions of Pixel and Objects. Examples for generic versions of these things are:
 * Pixel with [y,x] value set but a flexible color
 * Pixel with flexible y coordinate but fixed x coordinate or color
