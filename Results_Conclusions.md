@@ -1,5 +1,7 @@
 # ARC - Results and Conclusions
-TODO// What has been our journey over the past 14 weeks in the ARC Challenge
+The ARC Challenge accompanied us for 14 weeks. Many ideas were exchanged in brainstorming phases, many things were tried out.
+Even if we cannot present "THE" solution of the ARC Challenge in the end, we can still take a lot from this.
+
 ## Results
 TODO// Result of our solution variant with FuzzyLogic
 
