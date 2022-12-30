@@ -1,20 +1,41 @@
-# ARC - FuzzyLogic
-## Why FuzzyLogic?
-TODO// Why we decided to use FuzzyLogic?
+# ARC - Fuzzy logic
+## What is fuzzy logic?
+[Fuzzy Logic](https://google.com/search?q=fuzzy+logic)
 
-## How do we use our preprocessing and our obtained correlations in FuzzyLogic?
-TODO// Explanation
+## Why fuzzy logic?
+TODO// Why we decided to try to use fuzzy logic?
 
-## Our implementation/ implementation approaches of FuzzyLogic
-TODO// Sequence of FuzzyLogic in connection with ARC problems
+Fuzzy logic promises many similarities to a neural network. As we were thinking about using a NN anyway, we took a closer
+look at fuzzy logic. One advantage of using fuzzy logic in comparison to a NN would be the comprehensibility of the process.
+This would allow us to understand and debug our solution.
+Even though the goal of the ARC-Challenge would be to get rid of the human thought process, it would not be possible in our opinion.
+The tasks are built by humans, and therefore it would be a mistake to not include this kind of logic into the solving process.
+By defining the rules for fuzzy logic discretely and by ourselves, we hoped to  be able to inject such human thought processes into it. 
+
+
+
+## How could the preprocessing and our obtained correlations be used in fuzzy logic?
+Thanks to the preprocessing, the correlations are possible to make, since the grids of the task are transformed into a grid-object.
+What the preprocessing and the correlations are can be viewed more precisely in the md-files:
+- [preprocessing](preprocessing.md)
+- [correlations](correlations.md)
+
+With help of the correlations, the rules for the fuzzy logic can be built.
+The values of a correlation can be used as the input actions in the ruleset.
+This means for example, the parameter colorDiff could be used to build different rules and create different outcomes based on its values.
+
+## Our implementation/ implementation approaches of fuzzy logic
+To define a ruleset, it is necessary to know what should be the input and output of the rule.
+
+If variable is some value and `` then action.
 
 ### ARC- Variables
 ### Define lingustic variables and terms 
 TODO// What are our variables
 #### Variables
-* `decect(x,y)`
-* `decect(y,x)`
-* `decect(x,y,count)`
+* `detect(x,y)`
+* `detect(y,x)`
+* `detect(x,y,count)`
 * `dim(x,y)` -> possible values -1, 0, 1
 * `countPixel(x,y)`
 * `countPixelColor(x,y)`
