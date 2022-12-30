@@ -3,8 +3,6 @@
 ## Per-Task Training
 One approach that was initially discussed was the possibility on training a model on each task instead of having one algorythm to solve all of them.
 
-I'm just writing down my thought processes here.
-
 ### Idea prerequisites
 
 The basic idea here is that you have a neural network. This network represents a function in a classic Ai sense. If you have for example 3 inputs and 3 correct outputs, this network is able to learn a mapping (function) between those inputs and outputs (depending on if each layer can be derivated, as far as I understood mathematically).
@@ -77,10 +75,7 @@ If there is a 1, move the index of it up one row.
 
 Assumption 2: If we find the most general solution that can solve a set of problems, it must be able to solve the task.
 
-TODO: Find out if this assumption is correct.
-
 We seem to need a way to be able to find out if this code is general or not.
-
 
 ### Kernel thoughts with example
 
@@ -94,7 +89,7 @@ A convoluted layer in a CNN has a kernel that modifies the input. With image stu
 would be able to solve the task correctly in a single layer.
 
 
-### Functions to reduce complexity
+### Functions to reduce complexity (Fuzzy Logic)
 
 If you were to just try possible permutations on the input to get to the output, you would probably never arrive at a solution because there are too many permutations one can do.
 
