@@ -412,9 +412,11 @@ With these two grids, the `correlate` function can be called, which needs to com
 To see what can be achieved by the correlation, the following *two examples* from the training-set of ARC are described in the [correlation notebook](correlation_testing.ipynb):
 
 a79310a0.json
+
 ![Correlation example a79310a0.json](img/correlation_example2.png)
 
 05f2a901.json
+
 ![Correlation example 05f2a901.json](img/correlation_example3.png)
 
 
