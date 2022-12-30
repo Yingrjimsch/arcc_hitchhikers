@@ -20,6 +20,10 @@ class Pixel:
 class Grid:
     def getPixels(self):
         return self.pixels
+    def getRawWithoutColor(self):
+        no_color_raw = np.array(self.raw)
+        no_color_raw[np.where(no_color_raw != 0)] = 1
+        return no_color_raw
     def __init__(self, raw_grid, pixels=[], child=False):
         self.raw = raw_grid
         self.shape = raw_grid.shape
