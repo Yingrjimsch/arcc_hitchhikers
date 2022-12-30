@@ -4,7 +4,7 @@
 A little more than three months ago, in the first lecture of the module "Artificial Intelligence", we were introduced to the ARC Challenge.
 Immediately we knew that this would be a very interesting and challenging work for each of us.
 So we, Matthias Koch, Gabriel Nobel, Rebekka von Wartburg, Tobias Wehrli and Oliver Wiedler, formed the team Hitchhikers and registered for [ARC](https://lab42.global/arcathon/).
-This was followed by a time in which we dealt intensively with the ARC problems, solved many of these problems ourselves and analyzed them.
+This was followed by a time in which we dealt intensively with the ARC problems, solved many of these problems ourselves and analyzed them. This includes [visualizing and labeling](playground/ARCathon_label_dataset.ipynb) the training/validation data from ARC.
 From this we came up with different ideas how to approach the task of finding a "solution" to the abstract reasoning challenge.
 
 In the end it was fun to work on the challenge and even if we didn't manage to achieve everything we have some satisfying [results and conclusions](results_conclusions.md).
@@ -119,20 +119,19 @@ In this step, grids, pixels and objects are processed in advance to find the gre
 #### Structure Comparison ([here](correlations.md))
 Here, all possible input grids per task are compared with each other and generate different correlations
 
-#### Structure Evaluation ([here](correlations.md#the-other-generated-value-will-be-a-grid-object-which-is-an-abstracton-of-the-compared-grids-as-follows))
+#### Structure Evaluation ([here](correlations.md#correlation-attributes))
 In the evaluation step, we will use the correlation we created in Structure Comparison to evaluate all different  correlations. We try to extract the correlations of the correlations (if this makes any sense) and build a Grid, which contains generic versions of Pixel and Objects. Examples for generic versions of these things are:
 * Pixel with [y,x] value set but a flexible color
 * Pixel with flexible y coordinate but fixed x coordinate or color
 * Object Array with two fixed objects with flexible Pixel Size
 * ...
 
-#### Generic Evaluator
+#### Generic Evaluator ([here](correlations.md#the-other-generated-value-will-be-a-grid-object-which-is-an-abstracton-of-the-compared-grids-as-follows))
 These generic grids must then be compared with the output grids. If necessary, generic elements must be added or removed.
 
-#### Transformation
+#### Transformation/Fuzzy Logic ([here]((fuzzy_logic.md))
 
-With the hopefully correct structure obtained from the previous steps, we now move on to the more fine-grained transformations, where we try to figure out not only the structure but also the transformations. We do this by taking the knowledge of the structure and using it to strategically perform a series of transformations (like rotate, flip, recolor...).
-These should be done sequentially and individually and be provided with heuristics.
+With the hopefully correct structure obtained from the previous steps, we now move on to the more fine-grained transformations, where we try to figure out not only the structure but also the transformations. We do this by taking the knowledge of the structure and using it to strategically perform a series of transformations (like rotate, flip, recolor...). For evaluation of the different transformations, a fuzzy logic will be considered.
 
 #### Voting
 We select the top 3 transformation chains. If a chain has 100% output everywhere (correct result) then we apply it to our test data set. (Idea): If not, we try to do dark magic and compare via index which transformations in our test data set were the highest score in an exercise which resembles the one we are solving as good as possible. Then we apply some of these transformations at random to our chain and hope for an improvement.
