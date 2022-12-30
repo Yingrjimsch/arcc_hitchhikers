@@ -129,7 +129,7 @@ In the evaluation step, we will use the correlation we created in Structure Comp
 #### Generic Evaluator ([here](correlations.md#the-other-generated-value-will-be-a-grid-object-which-is-an-abstracton-of-the-compared-grids-as-follows))
 These generic grids must then be compared with the output grids. If necessary, generic elements must be added or removed.
 
-#### Transformation/Fuzzy Logic ([here]((fuzzy_logic.md))
+#### Transformation/Fuzzy Logic ([here](fuzzy_logic.md))
 
 With the hopefully correct structure obtained from the previous steps, we now move on to the more fine-grained transformations, where we try to figure out not only the structure but also the transformations. We do this by taking the knowledge of the structure and using it to strategically perform a series of transformations (like rotate, flip, recolor...). For evaluation of the different transformations, a fuzzy logic will be considered.
 
