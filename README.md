@@ -1,4 +1,13 @@
 #  ARC Challenge Team Hitchhikers
+## Introduction
+
+A little more than three months ago, in the first lecture of the module "Artificial Intelligence", we were introduced to the ARC Challenge.
+Immediately we knew that this would be a very interesting and challenging work for each of us.
+So we, Matthias Koch, Gabriel Nobel, Rebekka von Wartburg, Tobias Wehrli and Oliver Wiedler, formed the team Hitchhikers and registered for the [ARC-Challenge](https://lab42.global/arcathon/).
+This was followed by a time in which we dealt intensively with the ARC problems, solved many of these problems ourselves and analyzed them.
+From this we came up with different ideas how to approach the task of finding a "solution" to the ARC-Challenge.
+
+
 ##  Implementation Guidelines
 In this section we describe what our implementation guidelines are. They are kept as simple as possible so that everyone does the implementation process in the same way.
 
