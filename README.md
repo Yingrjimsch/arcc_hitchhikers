@@ -297,7 +297,7 @@ A convoluted layer in a CNN has a kernel that modifies the input. With image stu
 | 0 |
 | 1 |
 
-would be able to solve the task correctly in a single layer.
+would be able to solve the task above correctly in a single layer.
 
 
 ### Functions to reduce complexity (Similar to our Fuzzy Logic)
