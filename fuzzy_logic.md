@@ -4,7 +4,7 @@
 Fuzzy logic promises many similarities to a neural network (NN). As we were thinking about using a NN anyway, we took a closer
 look at fuzzy logic. One advantage of using fuzzy logic in comparison to a NN would be the comprehensibility of the process.
 This would allow us to understand and debug our solution.
-Even though the goal of the ARC-Challenge would be to get rid of the human thought process, it would not be possible in our opinion.
+Even though the goal of the ARC would be to get rid of the human thought process, it would not be possible in our opinion.
 The tasks are built by humans, and therefore it would be a mistake to not include this kind of logic into the solving process.
 By defining the rules for fuzzy logic discretely and by ourselves, we hoped to  be able to inject such human thought processes into it. 
 
@@ -26,7 +26,7 @@ For that, our model will take one input-grid and the corresponding output-grid, 
 To define a rule-set, it is necessary to know what should be the input and output of the rule.
 A  rule can look something like this:
 
-* If (`variable_1` is `about value`) and (`variable_2` is `very high`) [and... ]* then `output` is `action`.
+If (`variable_1` is `about value`) and (`variable_2` is `very high`) [and... ]* then `output` is `action`.
 
 Our `variables` are defined in the [correlations](correlations.md#correlation-attributes), which are simply the different attributes of a correlation-object.
 
@@ -59,6 +59,17 @@ Unfortunately, this solution requires a tremendous amount of rules, which we wer
 Probably we also think for some actions, it is not that easy to define rules from correlations alone. For example a `bounce_from_wall` is not possible to see with a rule just by comparing in- and output.
 Here, the human thought-process needs to be taken into consideration. 
 
+### Idea 3
+A totally different approach would be to not use the `action` as an output, but an amount of `actions`.
+This means it is an approximate number expected and with this number, the search-algorithm for finding the correct action-order can be optimized.
+
+For example instead of searching for all possible moves with chains from only one `action` until about 10 `actions`,
+we get an output value like `about 5 actions`, so we know that we have to search maybe 4 to 6 different `actions`.
+
+#### Problem
+A problem with this approach is, that it is less discrete than the Ideas 1 and 2. So it needs more steps to get specific `actions` than in the other two ideas.
+It is not an action-finding fuzzy logic, but only one which helps to improve finding actions.
+
 ## Defuzzification
 With the ideas listed above, it should be possible to evaluate *one action* to perform.
 Unfortunately, an ARC-Problem will never be solved simply by performing one specific action on an object.
@@ -81,6 +92,6 @@ This can result in a totally different outcome.
 A different approach which is more plausible, is by adding some more output actions, which store a truth value of how plausible it is, that this action is executed first or second.
 
 An output could look like that: <br>
-`output = {"move": 0.767, "move_first": 0.62, "move_second": 0.12 "flip": 0.231, "flip_first": 0.23, "flip_second": 0.73, "color": 0.653}` <br>
+`output = {"move": 0.767, "move_first": 0.62, "move_second": 0.12, "flip": 0.231, "flip_first": 0.23, "flip_second": 0.73, "color": 0.653}` <br>
 the order would be `move`, `flip` and then `color` (since it is not relevant, when color is needed to be executed, it does not have an "order"-attribute.)
 
