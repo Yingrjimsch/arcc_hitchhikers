@@ -88,7 +88,7 @@ A human environment is full of objects which change or interact with each other.
 * ...
 ##### Interacting Objects
 * Bounce off
-* overlapp
+* Overlapp
 * Outline
 * Inline
 * ...
