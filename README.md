@@ -36,7 +36,7 @@ More Details for **Pixel, Grid, Object** can be found in the [preprocessing](pre
 
 ###  Grid indicies
 
-Pixels have to be accessed as normal array ( i.e. input for pixel (x,y)=[y,x])
+Pixels have to be accessed as numpy array ( i.e. input for pixel (x,y)=[y,x])
 
 |  |  |  |  |
 |--|--|--|--|
