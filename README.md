@@ -117,7 +117,7 @@ With new insights and new experiences from coding different test methods, we hav
 In this step, grids, pixels and objects are processed in advance to find the greatest possible amount of information we can extract from a single Input. (see Definitions for more Detail)
 
 #### Structure Comparison ([here](correlations.md))
-Here, all possible input grids per task are compared with each other and generate different correlations
+Here, all possible input grids per task are compared with their output and generate different correlations
 
 #### Structure Evaluation ([here](correlations.md#correlation-attributes))
 In the evaluation step, we will use the correlation we created in Structure Comparison to evaluate all different  correlations. We try to extract the correlations of the correlations (if this makes any sense) and build a Grid, which contains generic versions of Pixel and Objects. Examples for generic versions of these things are:
