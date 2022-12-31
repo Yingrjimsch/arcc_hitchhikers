@@ -26,7 +26,7 @@ quality of what we have so far.
 
 ### Our drawbacks
 * very time intensive semester (other subjects)
-* initial hurdle because of lack of experience
+* initial hurdle because of lack of experience (this includes visiting the AI-course while also having MLDM at the same time)
 * no consistent availability by all members
 
 ### Our next steps
