@@ -431,7 +431,7 @@ Some ideas are listed below:
 * `scaleValueY` | *If the grids have not the same height, factor from first to second height*
 
 #### The other generated value will be a `Grid` object, which is an abstracton of the compared Grids as follows:
-Values which are not plausible will ne represented as `NaN`.
+Values which are not plausible will be represented as `NaN`. Those are values which are unclear regarding simply comparing the first to the second grid.
  ```json
  {
     "raw": [
