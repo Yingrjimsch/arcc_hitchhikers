@@ -1,15 +1,15 @@
 # ARC - Results and Conclusions
-The ARC Challenge accompanied us for 14 weeks. Many ideas were exchanged in brainstorming phases, many things were tried out.
-Even if we cannot present "THE" solution of the ARC Challenge in the end, we can still take many learnings from it.
+The abstract reasoning challenge accompanied us for 14 weeks. Many ideas were exchanged in brainstorming phases, many things were tried out.
+Even if we cannot present "THE" solution of the ARC in the end, we can still take many learnings from it.
 
 ## Results
 As it was already reported in [fuzzy logic](fuzzy_logic.md) it turned out to be more difficult than expected to apply the fuzzy logic to the ARC problems.
 Possible reasons for this are:
-* It would be not a simple task to generate fuzzy logic rules automatically
-* To generate rules for each transformation is very costly and has to be done by hand
-* Static rules only apply on a small set of problems
-* Correlations as input values are not always sufficient
-* Not found a solution yet to set the correct order of the transformations (list of transformations instead of only one)
+* It would be not a simple task to generate fuzzy logic rules automatically.
+* To generate rules for each transformation is very costly and has to be done by hand.
+* Static rules only apply on a small set of problems.
+* Correlations as input values are not always sufficient.
+* Not found a solution yet to set the correct order of the transformations (list of transformations instead of only one).
 
 ## Conclusions
 To summarize the journey of tackling the abstract reasoning challenge there are multiple things to say.
@@ -30,7 +30,7 @@ quality of what we have so far.
 * no consistent availability by all members
 
 ### Our next steps
-Since this year's ARC-Challenge is over, and we unfortunately could not reach a complete solution
+Since this year's ARC is over, and we unfortunately could not reach a complete solution
 (reasons for this were already mentioned under "Results"), here are some next possible steps:
 * **preprocessing**:
   * collision- detection (object - object / object - boundary)
