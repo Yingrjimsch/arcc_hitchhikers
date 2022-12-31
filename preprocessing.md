@@ -7,7 +7,7 @@ This, very important, part is performed for each ARC task in order to extract as
 </p>
 
 
-Most of the Tasks from the ARC Dataset consist of around three examples and one task with an unknown output. Every example task consists of a two dimensional array with inputs (numbers 0-9) and a two dimensional array with outputs (also numbers 0-9)
+Most of the Tasks from the ARC Dataset consist of around three examples and one task with an unknown output. Every example task consists of a two dimensional array with inputs (numbers 0-9) and a two dimensional array with outputs (also numbers 0-9).
 These arrays are read in and converted to `Grid` objects, which have following attributes:
 
  - `raw`  | *the raw 2 dimensional array of numbers (normalized to start at 0,0)*
@@ -38,6 +38,6 @@ The drawback of this method is, that in reality objects can also be multicolored
 
 ### Pattern Recognition
 
-Not all exercises have something to do with objectness. Most of the other exercises which are not related to objectness have a color pattern which needs to be somehow predicted. Therefore the idea is to use sliding window technique to find repeated patterns. This can also be used to detect a subgrid's position in a parent grid. Findings have shown, that pattern recognition and object detection are strongly linked in relation to ARC-tasks. 
+Not all exercises have something to do with objectness. Most of the other exercises which are not related to objectness have a color pattern which needs to be somehow predicted. Therefore the idea is to use sliding window technique to find repeated patterns. This can also be used to detect a subgrid's position in a parent grid. Findings have shown, that pattern recognition and object detection are strongly linked in relation to ARC tasks. 
 
 [^1]: https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.label
