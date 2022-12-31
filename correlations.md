@@ -1,12 +1,12 @@
 # Correlations
 In this section it is briefly explained which correlations exist, how they are obtained and what the correlations method should return.
 
-To get the best possible result the goal is to find as many correlations as possible. Because of that the Grids should be compared with each other as follows
+To get the best possible result the goal is to find as many correlations as possible. Because of that the Grids should be compared with each other as follows:
 1. X number of input and X number of output grids are generated from preprocessing and are given as parameters to the `correlate` function.
-2. every input is compared with its specific output.
-3. for every comparison a **correlation object** will be returned.
+2. Every input is compared with its specific output.
+3. For every comparison a **correlation object** will be returned.
 
-Future steps could be to also correlate input/input and output/output
+Future steps could be to also correlate input/input and output/output.
 
 ## Example
 As an example, the following input, output data are provided:
